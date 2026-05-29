@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-apple: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Luxury Minimal Color Palette */
+  --color-bg-dark: #000000;
+  --color-bg-light: #f5f5f7;
+  --color-bg-white: #ffffff;
+  --color-text-primary: #1d1d1f;
+  --color-text-secondary: #86868b;
+  --color-text-muted: #a1a1a6;
+  --color-accent-earth: #8a7d73;
+  --color-accent-earth-light: #b5aba2;
+  
+  /* Glassmorphism & Borders */
+  --glass-nav: rgba(255, 255, 255, 0.72);
+  --glass-card: rgba(255, 255, 255, 0.8);
+  --border-light: rgba(0, 0, 0, 0.08);
+  --border-dark: rgba(255, 255, 255, 0.1);
+  
+  /* Easing */
+  --cb-apple: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-apple);
+  background-color: var(--color-bg-white);
+  color: var(--color-text-primary);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s var(--cb-apple);
+}
+
+/* Global Content Utility Classes */
+.section-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 120px 24px;
+}
+
+.section-tag {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-accent-earth);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+  margin-bottom: 32px;
+}
+
+.paragraph-body {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}

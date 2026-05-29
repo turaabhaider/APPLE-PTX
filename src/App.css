@@ -1,0 +1,25 @@
+/* ==========================================================================
+   APP SHELL STRUCTURAL LAYOUT
+   ========================================================================== */
+
+.app-container {
+  background-color: var(--color-bg-white);
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Smooth selection accent color mirroring Apple digital experience packaging */
+::selection {
+  background-color: var(--color-accent-earth-light);
+  color: var(--color-bg-dark);
+}
+
+::-moz-selection {
+  background-color: var(--color-accent-earth-light);
+  color: var(--color-bg-dark);
+}
+html {
+  scroll-behavior: smooth;
+}

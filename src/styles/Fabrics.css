@@ -1,0 +1,94 @@
+.fabrics-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.fabrics-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.fabric-tile {
+  position: relative;
+  height: 320px;
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.fabric-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--cb-apple, cubic-bezier(0.25, 1, 0.5, 1));
+}
+
+.fabric-tile-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.7) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 32px;
+}
+
+.fabric-tile-overlay h3 {
+  color: var(--color-bg-white, #ffffff);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.fabric-tile:hover img {
+  transform: scale(1.06);
+}
+
+/* Updated overlay for the brand tile to protect typography contrast over the image background */
+.fabric-brand-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.85) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 32px;
+}
+
+.fabric-brand-content {
+  width: 100%;
+}
+
+.fabric-brand-content .brand-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-earth-light, #d4d0c5);
+}
+
+.fabric-brand-content h2 {
+  color: #ffffff;
+  font-size: 48px;
+  font-weight: 700;
+  margin: 4px 0 10px 0;
+  line-height: 1;
+}
+
+.fabric-brand-content p {
+  color: #e5e5ea;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .fabrics-showcase-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .fabrics-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,70 @@
+.newsletter-section {
+  padding: 100px 24px;
+  background-color: var(--color-bg-light);
+  display: flex;
+  justify-content: center;
+}
+
+.newsletter-card {
+  background-color: var(--color-bg-white);
+  max-width: 700px;
+  width: 100%;
+  padding: 60px;
+  border-radius: 28px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+
+.newsletter-content h2 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.newsletter-content p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: 32px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 12px;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  background-color: var(--color-bg-light);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s var(--cb-apple);
+}
+
+.newsletter-form input:focus {
+  border-color: var(--color-accent-earth);
+}
+
+.newsletter-form button {
+  padding: 16px 32px;
+  background-color: var(--color-text-primary);
+  color: var(--color-bg-white);
+  border: none;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.newsletter-form button:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .newsletter-form { flex-direction: column; }
+}
