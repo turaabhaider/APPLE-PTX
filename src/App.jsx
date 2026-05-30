@@ -1,7 +1,8 @@
 import React from 'react';
-import './App.css'; // Explicitly loading the structural shell configuration
+import './App.css';
 
-// Component Layer Imports
+import useReveal from './components/useReveal';
+
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -12,6 +13,8 @@ import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 
 export default function App() {
+  useReveal();
+
   return (
     <div className="app-container">
       <Navbar />

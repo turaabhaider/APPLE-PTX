@@ -2,7 +2,7 @@
 
 :root {
   --font-apple: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  
+
   /* Luxury Minimal Color Palette */
   --color-bg-dark: #000000;
   --color-bg-light: #f5f5f7;
@@ -12,15 +12,17 @@
   --color-text-muted: #a1a1a6;
   --color-accent-earth: #8a7d73;
   --color-accent-earth-light: #b5aba2;
-  
+
   /* Glassmorphism & Borders */
   --glass-nav: rgba(255, 255, 255, 0.72);
   --glass-card: rgba(255, 255, 255, 0.8);
   --border-light: rgba(0, 0, 0, 0.08);
   --border-dark: rgba(255, 255, 255, 0.1);
-  
+
   /* Easing */
   --cb-apple: cubic-bezier(0.25, 1, 0.5, 1);
+  --cb-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --cb-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -47,7 +49,10 @@ a {
   transition: color 0.3s var(--cb-apple);
 }
 
-/* Global Content Utility Classes */
+/* ==========================================================================
+   GLOBAL CONTENT UTILITY CLASSES
+   ========================================================================== */
+
 .section-container {
   max-width: 1240px;
   margin: 0 auto;
@@ -78,3 +83,157 @@ a {
   line-height: 1.65;
   color: var(--color-text-secondary);
 }
+
+/* ==========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-48px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleDown {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUpBlur {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes revealWidth {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+/* ==========================================================================
+   REVEAL SYSTEM — base state (invisible until .visible is added by JS)
+   ========================================================================== */
+
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-down,
+.reveal-fade,
+.reveal-scale,
+.reveal-scale-down,
+.reveal-blur {
+  opacity: 0;
+}
+
+/* Triggered by IntersectionObserver adding .visible */
+.reveal.visible {
+  animation: fadeUp 0.75s var(--cb-spring) forwards;
+}
+
+.reveal-left.visible {
+  animation: fadeLeft 0.75s var(--cb-spring) forwards;
+}
+
+.reveal-right.visible {
+  animation: fadeRight 0.75s var(--cb-spring) forwards;
+}
+
+.reveal-down.visible {
+  animation: fadeDown 0.75s var(--cb-spring) forwards;
+}
+
+.reveal-fade.visible {
+  animation: fadeIn 0.9s var(--cb-smooth) forwards;
+}
+
+.reveal-scale.visible {
+  animation: scaleUp 0.7s var(--cb-spring) forwards;
+}
+
+.reveal-scale-down.visible {
+  animation: scaleDown 0.7s var(--cb-spring) forwards;
+}
+
+.reveal-blur.visible {
+  animation: slideUpBlur 0.8s var(--cb-spring) forwards;
+}
+
+/* ==========================================================================
+   STAGGER DELAYS
+   ========================================================================== */
+
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.24s; }
+.delay-4 { animation-delay: 0.32s; }
+.delay-5 { animation-delay: 0.40s; }
+.delay-6 { animation-delay: 0.48s; }
+.delay-7 { animation-delay: 0.56s; }
+.delay-8 { animation-delay: 0.64s; }
