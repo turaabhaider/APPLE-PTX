@@ -1,6 +1,7 @@
 import React from 'react';
 import { Leaf, Shield, Globe } from 'lucide-react';
 import '../styles/Ethics.css';
+import ethicsPhoto from '../assets/ethics wali photo.avif';
 
 export default function Ethics() {
   return (
@@ -14,7 +15,7 @@ export default function Ethics() {
               Reuse, recycle, reborn — we create sustainable fabrics and solutions. We help partners achieve sustainability goals and protect our planet. We see ourselves as the extended arm, ear, and eye of our customer. We deliver our best efforts that all business objectives and practices are aligned to create a positive impact for your worldwide supply chain and the surrounding environment.
             </p>
           </div>
-          
+
           <div className="ethics-right">
             <h4 className="certifications-title">TRUSTED CERTIFICATIONS THAT DEFINE OUR QUALITY & RESPONSIBILITY</h4>
             <div className="certifications-list">
@@ -43,13 +44,17 @@ export default function Ethics() {
           </div>
         </div>
 
-        <div className="quote-banner">
+        <div
+          className="quote-banner"
+          style={{ backgroundImage: `url(${ethicsPhoto})` }}
+        >
           <div className="quote-overlay"></div>
           <blockquote>
             "YOU CAN NOT MAKE A GOOD ECONOMICS OUT OF A BAD ETHICS"
             <cite>— Ezra Pound</cite>
           </blockquote>
         </div>
+
       </div>
     </section>
   );

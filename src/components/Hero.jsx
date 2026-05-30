@@ -1,9 +1,10 @@
 import React from 'react';
 import '../styles/Hero.css';
+import heroBg from '../assets/hero.webp';
 
 export default function Hero() {
   return (
-    <header id="home" className="hero-section">
+    <header id="home" className="hero-section" style={{ backgroundImage: `url(${heroBg})` }}>
       <div className="hero-bg-overlay"></div>
       <div className="hero-content">
         <h1 className="hero-title animate-fade-in">
