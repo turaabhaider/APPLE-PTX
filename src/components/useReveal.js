@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 
-export default function useReveal() {
+export default function useReveal(enabled = true) {
   useEffect(() => {
+    if (!enabled) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -15,10 +17,10 @@ export default function useReveal() {
     );
 
     const targets = document.querySelectorAll(
-      '.reveal, .reveal-left, .reveal-right, .reveal-fade'
+      '.reveal, .reveal-left, .reveal-right, .reveal-down, .reveal-fade, .reveal-scale, .reveal-scale-down, .reveal-blur'
     );
     targets.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, []);
+  }, [enabled]); // re-runs when enabled flips to true
 }
