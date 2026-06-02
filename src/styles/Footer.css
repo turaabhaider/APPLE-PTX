@@ -60,6 +60,12 @@
   margin-bottom: 8px;
 }
 
+.footer-email-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .social-link {
   color: #86868b;
   text-decoration: none;
@@ -67,8 +73,50 @@
   transition: color 0.2s ease;
 }
 
-.social-link:hover {
+/* Custom styles for the interactive email link button */
+.social-link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  color: #86868b;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.social-link:hover,
+.social-link-btn:hover,
+.social-link-btn.active {
   color: #ffffff;
+}
+
+/* Beautiful dynamic notification chip layout */
+.footer-email-badge {
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #f5f5f7;
+  background-color: #1c1c1e;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #212124;
+  word-break: break-all;
+  user-select: all; /* Allows easy highlight copy actions */
+  animation: slideDownEmail 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDownEmail {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Copyright row — spans all 3 columns */
@@ -104,7 +152,7 @@
   color: #ffffff;
 }
 
-/* ── Mobile ─────────────────────────────────────────── */
+/* ── Mobile Optimization ─────────────────────────────────────────── */
 @media (max-width: 768px) {
 
   .footer-section {
@@ -173,9 +221,22 @@
     margin-bottom: 12px;
   }
 
-  .social-link {
+  .social-link,
+  .social-link-btn {
     font-size: 14px;
     color: #aeaeb2;
+  }
+
+  /* Tailored display variations for beautiful padding layouts on mobile views */
+  .footer-email-badge {
+    font-size: 13px;
+    padding: 8px 12px;
+    margin-top: 8px;
+    background-color: #121214;
+    border-color: #2c2c2e;
+    color: #ffffff;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .footer-copyright-row {
