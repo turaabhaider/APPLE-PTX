@@ -18,12 +18,18 @@
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-  transition: transform 0.4s var(--cb-apple), box-shadow 0.4s var(--cb-apple);
+  /* Added background to smooth out the theme transition */
+  transition: transform 0.4s var(--cb-apple), box-shadow 0.4s var(--cb-apple), background 0.4s var(--cb-apple);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent; /* Removes default flash box selection on mobile taps */
 }
 
-.service-card:hover {
+/* Handles luxury card pop transition on hover (PC) and active touch (mobile) */
+.service-card:hover,
+.service-card:active {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  background: linear-gradient(135deg, #dcd1be, #c8b89a);
+  box-shadow: 0 16px 32px rgba(200, 184, 154, 0.25);
 }
 
 .service-img-holder {
@@ -38,7 +44,9 @@
   transition: transform 0.6s var(--cb-apple);
 }
 
-.service-card:hover .service-img-holder img {
+/* Triggers image zooming smoothly on both platforms */
+.service-card:hover .service-img-holder img,
+.service-card:active .service-img-holder img {
   transform: scale(1.05);
 }
 
@@ -51,12 +59,26 @@
   font-weight: 600;
   letter-spacing: 0.05em;
   margin-bottom: 12px;
+  color: var(--color-text-primary, #0c0b09);
+  transition: color 0.3s ease;
 }
 
 .service-info p {
   font-size: 14px;
   line-height: 1.6;
   color: var(--color-text-secondary);
+  transition: color 0.3s ease;
+}
+
+/* Dynamically invert the typography color layout for premium readability over the gold mix background */
+.service-card:hover .service-info h3,
+.service-card:active .service-info h3 {
+  color: #0b0b0c; /* Deep rich dark focus point */
+}
+
+.service-card:hover .service-info p,
+.service-card:active .service-info p {
+  color: #3a3a3c;
 }
 
 @media (max-width: 768px) {
