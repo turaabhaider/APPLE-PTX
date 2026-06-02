@@ -13,6 +13,10 @@
   border-radius: 28px;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+  /* Added transitions so the entire card background shifts smoothly */
+  transition: 
+    background 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)), 
+    box-shadow 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
 .newsletter-title {
@@ -21,12 +25,14 @@
   letter-spacing: 0.1em;
   margin-bottom: 8px;
   color: var(--color-text-primary, #0c0b09);
+  transition: color 0.3s ease;
 }
 
 .newsletter-subtitle {
   font-size: 14px;
   color: var(--color-text-secondary, #666);
   margin-bottom: 32px;
+  transition: color 0.3s ease;
 }
 
 .newsletter-form {
@@ -40,13 +46,37 @@
   border-radius: 12px;
   border: 1px solid var(--border-light, #e5e5e5);
   background-color: var(--color-bg-light, #f9f9f9);
+  color: var(--color-text-primary, #0c0b09);
   font-size: 14px;
   outline: none;
-  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+  transition: 
+    border-color 0.3s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)),
+    background-color 0.3s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)),
+    box-shadow 0.3s ease;
 }
 
+/* ── STATE DETECTOR: When the input bar inside the card is clicked/focused ── */
+.newsletter-card:has(.newsletter-input:focus) {
+  /* The full card shifts into the luxury gold-and-brown gradient mixture */
+  background: linear-gradient(135deg, #dcd1be, #c8b89a);
+  box-shadow: 0 20px 48px rgba(200, 184, 154, 0.3);
+}
+
+/* Invert heading and subtitle text colors when the full box lights up */
+.newsletter-card:has(.newsletter-input:focus) .newsletter-title {
+  color: #0b0b0c;
+}
+
+.newsletter-card:has(.newsletter-input:focus) .newsletter-subtitle {
+  color: #3a3a3c;
+}
+
+/* Style adjustment for the input bar itself when the full box changes color */
 .newsletter-input:focus {
-  border-color: var(--color-accent-earth, #c8b89a);
+  background-color: #ffffff; /* Crisp white center background for easy reading */
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
 
 .newsletter-submit-btn {
@@ -59,7 +89,7 @@
   font-weight: 600;
   letter-spacing: 0.05em;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, background-color 0.3s ease;
 }
 
 .newsletter-submit-btn:hover {
@@ -108,7 +138,7 @@
     display: block;
     margin-top: 20px;
     padding: 14px 16px;
-    background-color: rgba(200, 184, 154, 0.08); /* Soft tinted background match */
+    background-color: rgba(200, 184, 154, 0.08); 
     border: 1px dashed var(--color-accent-earth, #c8b89a);
     border-radius: 12px;
     animation: fadeInNotice 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
