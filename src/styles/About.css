@@ -38,18 +38,21 @@
   background-color: var(--color-bg-light);
   padding: 32px;
   border-radius: 20px;
-  transition: transform 0.3s var(--cb-apple);
-}
-
-.pillar-card:hover {
-  transform: translateY(-4px);
+  /* Smoothly animate background, transforms, and shadows together */
+  transition: 
+    transform 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)), 
+    background 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)),
+    box-shadow 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1));
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent; /* Removes default blue tap highlight box on mobile devices */
 }
 
 .pillar-num {
   font-size: 14px;
   font-weight: 700;
-  color: var(--color-accent-earth);
+  color: var(--color-accent-earth, #c8b89a);
   margin-bottom: 16px;
+  transition: color 0.3s ease;
 }
 
 .pillar-card h3 {
@@ -57,14 +60,43 @@
   font-weight: 600;
   margin-bottom: 12px;
   letter-spacing: -0.01em;
+  color: var(--color-text-primary, #0c0b09);
+  transition: color 0.3s ease;
 }
 
 .pillar-card p {
   font-size: 14px;
   line-height: 1.5;
-  color: var(--color-text-secondary);
+  color: var(--color-text-secondary, #666666);
+  transition: color 0.3s ease;
 }
 
+/* ── Interactive State: Hover (PC) and Active Tap (Phone) ── */
+.pillar-card:hover,
+.pillar-card:active {
+  transform: translateY(-6px);
+  /* Premium blend of light brown and golden accent mixture */
+  background: linear-gradient(135deg, #dcd1be, #c8b89a);
+  box-shadow: 0 16px 32px rgba(200, 184, 154, 0.25);
+}
+
+/* Invert inner typography beautifully for flawless visual legibility against the golden mix background */
+.pillar-card:hover .pillar-num,
+.pillar-card:active .pillar-num {
+  color: #ffffff;
+}
+
+.pillar-card:hover h3,
+.pillar-card:active h3 {
+  color: #0b0b0c; /* Deep rich dark text for premium contrast */
+}
+
+.pillar-card:hover p,
+.pillar-card:active p {
+  color: #3a3a3c;
+}
+
+/* ── Responsive Viewports ── */
 @media (max-width: 1024px) {
   .about-grid {
     grid-template-columns: 1fr;
