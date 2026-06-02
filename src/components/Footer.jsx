@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Footer.css';
 
 export default function Footer() {
+  const [showEmail, setShowEmail] = useState(false);
+
   return (
     <footer className="footer-section">
       <div className="section-container footer-grid">
@@ -31,14 +33,26 @@ export default function Footer() {
             <li><a href="https://www.facebook.com/PakistanTextileExchange" target="_blank" rel="noopener noreferrer" className="social-link">Facebook</a></li>
             <li><a href="https://www.instagram.com/theptxofficial/?hl=en" target="_blank" rel="noopener noreferrer" className="social-link">Instagram</a></li>
             <li><a href="https://www.linkedin.com/company/paktex-apparel/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="social-link">LinkedIn</a></li>
-            <li><a href="mailto:david@paktex.com" className="social-link">Email Support</a></li>
+            <li className="footer-email-item">
+              <button 
+                type="button" 
+                onClick={() => setShowEmail(!showEmail)} 
+                className={`social-link-btn ${showEmail ? 'active' : ''}`}
+              >
+                Email Support
+              </button>
+              {showEmail && (
+                <div className="footer-email-badge">
+                  david@paktex.com
+                </div>
+              )}
+            </li>
           </ul>
         </div>
 
         {/* Copyright — full width row inside the same grid box */}
         <div className="footer-copyright-row">
           <p className="copyright-text">© 2026 Copyright: Paktex.com</p>
-          
         </div>
 
       </div>
