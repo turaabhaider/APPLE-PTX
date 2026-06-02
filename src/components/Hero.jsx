@@ -47,7 +47,7 @@ export default function Hero() {
       <div className="hero-bg-overlay"></div>
 
       <div className="hero-content">
-        <p className="hero-eyebrow">FROM CONCEPT TO DELIVERY</p>
+        
         <h1 className="hero-title animate-fade-in">
           Professional Apparel<br />
           <span>Solutions</span>
@@ -70,7 +70,7 @@ export default function Hero() {
       {/* Stats bar */}
       <div className="hero-stats-bar">
         <div className="hero-stat">
-          <span className="stat-number">15+</span>
+          <span className="stat-number">25+</span>
           <span className="stat-label">Years Experience</span>
         </div>
         <div className="hero-stat-divider" />
