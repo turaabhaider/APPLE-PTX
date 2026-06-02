@@ -1,8 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../styles/Footer.css';
 
 export default function Footer() {
   const [showEmail, setShowEmail] = useState(false);
+  const timerRef = useRef(null);
+
+  const handleEmailToggle = () => {
+    // Clear any active timer before setting a new one
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    if (showEmail) {
+      // If manually clicked while open, close it instantly
+      setShowEmail(false);
+    } else {
+      // Show the email badge and start a clean 3-second countdown
+      setShowEmail(true);
+      timerRef.current = setTimeout(() => {
+        setShowEmail(false);
+      }, 3000); // Adjusted to 3 seconds
+    }
+  };
+
+  // Cleanup the timer if the component unmounts
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   return (
     <footer className="footer-section">
@@ -36,7 +62,7 @@ export default function Footer() {
             <li className="footer-email-item">
               <button 
                 type="button" 
-                onClick={() => setShowEmail(!showEmail)} 
+                onClick={handleEmailToggle} 
                 className={`social-link-btn ${showEmail ? 'active' : ''}`}
               >
                 Email Support
