@@ -39,19 +39,20 @@
   background-color: #fafafa;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent; /* Eliminates flashing selector feedback on touch devices */
-  transition: border-color 0.4s ease,
-              background 0.4s ease,
-              box-shadow 0.4s ease,
-              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Upgraded transitions to handle transform scale alongside filters smoothly */
+  transition: border-color 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)),
+              background 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)),
+              box-shadow 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)),
+              transform 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
-/* Luxury card pop transition on hover (PC) and active touch (mobile) */
+/* Upgraded interaction: Dynamic slight lift and scale mixture for premium feedback */
 .cert-item:hover,
 .cert-item:active {
   border-color: transparent;
   background: linear-gradient(135deg, #dcd1be, #c8b89a);
-  box-shadow: 0 16px 32px rgba(200, 184, 154, 0.25);
-  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(200, 184, 154, 0.32);
+  transform: translateY(-6px) scale(1.01);
 }
 
 /* Logo wrapper — fixed square */
@@ -67,6 +68,15 @@
   flex-shrink: 0;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  /* Added transition for micro-movement inside the card */
+  transition: transform 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)), box-shadow 0.4s ease;
+}
+
+/* Micro-movement: Logo wrapper reacts slightly when the card is active/hovered */
+.cert-item:hover .cert-logo-wrapper,
+.cert-item:active .cert-logo-wrapper {
+  transform: scale(1.04) translateX(2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .cert-logo {
@@ -195,6 +205,11 @@
     padding: 16px 18px;
     border-radius: 16px;
     gap: 16px;
+  }
+
+  /* Optimize dynamic micro-scale slightly for smaller touch-targets */
+  .cert-item:active {
+    transform: translateY(-4px) scale(1.01);
   }
 
   .cert-logo-wrapper {
