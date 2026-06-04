@@ -31,29 +31,35 @@
   border-color: rgba(255, 255, 255, 0.7);
 }
 
-/* Scrolled — glass nav */
+/* Scrolled — dark warm glass matching site theme */
 .navbar-scrolled {
   height: 60px;
-  background-color: rgba(255, 255, 255, 0.88);
+  background-color: rgba(12, 11, 9, 0.92);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 1px 24px rgba(0, 0, 0, 0.06);
+  border-color: rgba(200, 184, 154, 0.12);
+  box-shadow: 0 1px 32px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-scrolled .nav-logo a,
 .navbar-scrolled .nav-links a {
-  color: var(--color-text-primary) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.navbar-scrolled .nav-links a::after {
+  background-color: #c8b89a;
 }
 
 .navbar-scrolled .nav-cta-btn {
-  background-color: #0c0b09 !important;
-  border-color: #0c0b09 !important;
-  color: #ffffff !important;
+  background-color: #c8b89a !important;
+  border-color: #c8b89a !important;
+  color: #0c0b09 !important;
+  font-weight: 600 !important;
 }
 
 .navbar-scrolled .nav-cta-btn:hover {
-  background-color: #2a2a2a !important;
+  background-color: #ddd0ba !important;
+  border-color: #ddd0ba !important;
   transform: scale(1.03);
 }
 
@@ -173,8 +179,9 @@
     transform-origin: left center;
   }
 
+  /* Mobile scrolled hamburger stays white since bg is dark */
   .navbar-scrolled .hamburger-menu .bar {
-    background-color: var(--color-text-primary);
+    background-color: rgba(255, 255, 255, 0.9);
   }
 
   .hamburger-menu.active .bar:nth-child(1) {
