@@ -1,248 +1,339 @@
+/* ── Section Container & Canvas ───────────────────────── */
+.ethics-section {
+  padding: 140px 0;
+  background-color: #faf9f6; /* Immaculate warm linen luxury canvas */
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ethics-section .section-container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
 .ethics-top-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  margin-bottom: 80px;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 100px;
+  margin-bottom: 100px;
   align-items: flex-start;
 }
 
-/* ── Left column ─────────────────────────────────────── */
-.ethics-left .section-title {
-  font-size: 48px;
+/* ── Left Column: Editorial Content ──────────────────── */
+.ethics-left {
+  position: relative;
+  padding-right: 40px;
 }
 
-/* ── Right column ────────────────────────────────────── */
+.ethics-left .section-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #b3a082; /* Premium warm muted gold accent */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  position: relative;
+  padding-left: 32px;
+}
+
+/* Elegant architectural line accent next to section tag */
+.ethics-left .section-tag::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 20px;
+  height: 1px;
+  background-color: #b3a082;
+  transform: translateY(-50%);
+}
+
+.ethics-left .section-title {
+  font-size: 54px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #0c0b09;
+  line-height: 1.1;
+  margin: 0 0 32px 0;
+}
+
+.ethics-left .paragraph-body {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.85; /* Highly readable, spacious text setting */
+  color: #54524f;
+  margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* ── Right Column: Premium Certification Stack ───────── */
 .certifications-title {
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--color-text-secondary);
-  margin-bottom: 28px;
-  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #8c8a85;
+  margin: 0 0 32px 0;
+  line-height: 1.6;
   text-transform: uppercase;
 }
 
 .certifications-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
-/* ── Cert card ───────────────────────────────────────── */
+/* ── Luxury Interactive Certification Cards ──────────── */
 .cert-item {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 20px 24px;
-  border-radius: 20px;
-  border: 1px solid var(--border-light);
-  background-color: #fafafa;
+  gap: 24px;
+  padding: 24px 28px;
+  border-radius: 24px;
+  border: 1px solid rgba(200, 184, 154, 0.25);
+  background-color: #ffffff;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent; /* Eliminates flashing selector feedback on touch devices */
-  /* Upgraded transitions to handle transform scale alongside filters smoothly */
-  transition: border-color 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)),
-              background 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)),
-              box-shadow 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)),
-              transform 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1));
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  /* Complex spring-like transition system for hyper-premium responsiveness */
+  transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Upgraded interaction: Dynamic slight lift and scale mixture for premium feedback */
+/* Modern architectural lift with signature gold fluid depth */
 .cert-item:hover,
 .cert-item:active {
   border-color: transparent;
-  background: linear-gradient(135deg, #dcd1be, #c8b89a);
-  box-shadow: 0 20px 40px rgba(200, 184, 154, 0.32);
-  transform: translateY(-6px) scale(1.01);
+  background: linear-gradient(135deg, #e4dac9 0%, #c8b89a 100%);
+  box-shadow: 0 24px 48px rgba(200, 184, 154, 0.35);
+  transform: translateY(-6px) scale(1.015);
 }
 
-/* Logo wrapper — fixed square */
+/* Fixed geometry logo container */
 .cert-logo-wrapper {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
   background-color: #ffffff;
-  border: 1px solid var(--border-light);
+  border: 1px solid rgba(0, 0, 0, 0.04);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  /* Added transition for micro-movement inside the card */
-  transition: transform 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)), box-shadow 0.4s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  /* Depth parallax transition on elements inside the card */
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Micro-movement: Logo wrapper reacts slightly when the card is active/hovered */
+/* Card inner-element micro-movement coordination */
 .cert-item:hover .cert-logo-wrapper,
 .cert-item:active .cert-logo-wrapper {
-  transform: scale(1.04) translateX(2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05) translateX(3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .cert-logo {
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   object-fit: contain;
 }
 
-/* OEKO-TEX custom badge */
+/* Sophisticated Deep Emerald-Forest Gradient for OEKO-TEX */
 .cert-oeko-badge {
   flex-direction: column;
   gap: 0;
-  background: linear-gradient(135deg, #1a5c3a 0%, #2d7a52 100%);
+  background: linear-gradient(135deg, #0e301d 0%, #1c4e33 100%);
   border: none;
 }
 
 .oeko-text {
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.08em;
   color: #ffffff;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .oeko-dash {
   font-size: 8px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.5);
   line-height: 1;
 }
 
 .oeko-tex {
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   color: #ffffff;
-  line-height: 1;
+  line-height: 1.1;
 }
 
-/* Text block typography styles */
+/* Typography styles inside cards */
 .cert-text h5 {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: 3px;
-  transition: color 0.3s ease;
+  color: #0c0b09;
+  margin: 0 0 4px 0;
+  transition: color 0.4s ease;
 }
 
 .cert-text p {
-  font-size: 12px;
-  color: var(--color-text-secondary);
+  font-size: 13px;
+  color: #706e6a;
   line-height: 1.4;
-  transition: color 0.3s ease;
+  margin: 0;
+  transition: color 0.4s ease;
 }
 
-/* Invert text coloring layouts contextually for sleek contrast against the gold theme */
+/* High-contrast luxurious dark charcoal inversion upon card activation */
 .cert-item:hover .cert-text h5,
 .cert-item:active .cert-text h5 {
-  color: #0b0b0c; /* High contrast dark brown slate tone */
+  color: #0c0b09;
 }
 
 .cert-item:hover .cert-text p,
 .cert-item:active .cert-text p {
-  color: #3a3a3c;
+  color: #383734;
 }
 
-/* ── Quote banner ────────────────────────────────────── */
+/* ── Haute Couture Editorial Quote Banner ────────────── */
 .quote-banner {
   position: relative;
-  border-radius: 28px;
-  padding: 100px 40px;
+  border-radius: 40px;
+  padding: 130px 60px;
   text-align: center;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
-  color: var(--color-bg-white);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
 }
 
+/* Modern blurred glass-atmospheric lighting overlay */
 .quote-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.65);
+  background-color: rgba(12, 11, 9, 0.55);
+  backdrop-filter: blur(2px) brightness(0.85);
   z-index: 1;
 }
 
 .quote-banner blockquote {
   position: relative;
   z-index: 2;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 300;
-  letter-spacing: 0.05em;
-  max-width: 800px;
+  letter-spacing: 0.06em;
+  max-width: 900px;
   margin: 0 auto;
-  line-height: 1.4;
+  line-height: 1.5;
+  color: #ffffff;
 }
 
 .quote-banner cite {
   display: block;
   font-style: normal;
-  font-size: 14px;
-  letter-spacing: 0.1em;
-  margin-top: 20px;
-  color: var(--color-accent-earth-light);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  margin-top: 28px;
+  color: #e4dac9; /* Muted ivory gold text coordinate */
+  text-transform: uppercase;
 }
 
-/* ── Tablet ───────────────────────────────────────────── */
-@media (max-width: 1024px) {
+/* ── Responsive Screen Settings (Tablet Viewports) ───── */
+@media (max-width: 1100px) {
   .ethics-top-grid {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 64px;
+    margin-bottom: 64px;
+  }
+  
+  .ethics-left {
+    padding-right: 0;
+  }
+  
+  .ethics-left .section-title {
+    font-size: 46px;
   }
 }
 
-/* ── Mobile ───────────────────────────────────────────── */
+/* ── Responsive Screen Settings (Mobile Viewports) ───── */
 @media (max-width: 768px) {
+  .ethics-section {
+    padding: 80px 0;
+  }
+
+  .ethics-section .section-container {
+    padding: 0 20px;
+  }
 
   .ethics-left .section-title {
     font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  .ethics-left .paragraph-body {
+    font-size: 15px;
+    line-height: 1.75;
   }
 
   .certifications-list {
-    gap: 12px;
+    gap: 14px;
   }
 
   .cert-item {
-    padding: 16px 18px;
-    border-radius: 16px;
-    gap: 16px;
+    padding: 20px 22px;
+    border-radius: 20px;
+    gap: 18px;
   }
 
-  /* Optimize dynamic micro-scale slightly for smaller touch-targets */
+  /* Calibrate fluid motion values safely for active phone interactions */
   .cert-item:active {
     transform: translateY(-4px) scale(1.01);
   }
 
   .cert-logo-wrapper {
-    width: 48px;
-    height: 48px;
+    width: 54px;
+    height: 54px;
     border-radius: 12px;
   }
 
   .cert-logo {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
   }
 
   .cert-text h5 {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .cert-text p {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .quote-banner {
-    border-radius: 20px;
-    padding: 64px 24px;
+    border-radius: 28px;
+    padding: 80px 24px;
   }
 
   .quote-banner blockquote {
-    font-size: 18px;
-    letter-spacing: 0.03em;
+    font-size: 20px;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
   }
 
   .quote-banner cite {
-    font-size: 12px;
-    margin-top: 16px;
+    font-size: 11px;
+    margin-top: 20px;
   }
 }
