@@ -1,24 +1,101 @@
+/* ── Section Canvas ── */
+.about-section {
+  padding: 140px 0;
+  background-color: #faf9f6; /* Immaculate luxury warm linen background */
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-section .section-container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+/* ── Top Grid Editorial Layout ── */
 .about-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 80px;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 100px;
   align-items: center;
-  margin-bottom: 100px;
+  margin-bottom: 120px;
+}
+
+.about-text-wrapper {
+  padding-right: 20px;
+}
+
+.about-text-wrapper .section-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #b3a082; /* Balanced rich earth-gold token */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  position: relative;
+  padding-left: 32px;
+}
+
+.about-text-wrapper .section-tag::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 20px;
+  height: 1px;
+  background-color: #b3a082;
+  transform: translateY(-50%);
+}
+
+.about-text-wrapper .section-title {
+  font-size: 54px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #0c0b09;
+  line-height: 1.1;
+  margin: 0 0 32px 0;
 }
 
 .paragraph-lead {
-  font-size: 22px;
-  line-height: 1.45;
+  font-size: 20px;
+  line-height: 1.6;
   font-weight: 400;
-  color: var(--color-text-primary);
+  color: #2c2a27;
   margin-bottom: 24px;
   letter-spacing: -0.01em;
 }
 
+.about-text-wrapper .paragraph-body {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #54524f;
+  margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* ── High-Fashion Frame Wrapper ── */
 .luxury-image-card {
-  border-radius: 24px;
+  border-radius: 32px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+  box-shadow: 0 30px 60px rgba(12, 11, 9, 0.08);
+  position: relative;
+  background-color: #e4dac9;
+  /* Premium spring-loaded pop for image frame scale */
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-image-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 32px;
+  pointer-events: none;
 }
 
 .luxury-image-card img {
@@ -26,8 +103,21 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(1.01);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Elegant micro parallax effect when hovering over image asset */
+.luxury-image-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 40px 80px rgba(12, 11, 9, 0.12);
+}
+
+.luxury-image-card:hover img {
+  transform: scale(1.04);
+}
+
+/* ── Four Pillars Architectural Display ── */
 .pillars-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -35,80 +125,138 @@
 }
 
 .pillar-card {
-  background-color: var(--color-bg-light);
-  padding: 32px;
-  border-radius: 20px;
-  /* Smoothly animate background, transforms, and shadows together */
-  transition: 
-    transform 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)), 
-    background 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)),
-    box-shadow 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1));
+  background-color: #ffffff;
+  padding: 40px 32px;
+  border-radius: 24px;
+  border: 1px solid rgba(200, 184, 154, 0.2);
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent; /* Removes default blue tap highlight box on mobile devices */
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  /* Complex coordinate system to handle transitions flawlessly */
+  transition: 
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+    background 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .pillar-num {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
-  color: var(--color-accent-earth, #c8b89a);
-  margin-bottom: 16px;
-  transition: color 0.3s ease;
+  letter-spacing: 0.1em;
+  color: #b3a082;
+  margin-bottom: 24px;
+  transition: color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
 }
 
 .pillar-card h3 {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin: 0 0 12px 0;
   letter-spacing: -0.01em;
-  color: var(--color-text-primary, #0c0b09);
-  transition: color 0.3s ease;
+  color: #0c0b09;
+  transition: color 0.4s ease;
 }
 
 .pillar-card p {
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--color-text-secondary, #666666);
-  transition: color 0.3s ease;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #706e6a;
+  margin: 0;
+  transition: color 0.4s ease;
 }
 
 /* ── Interactive State: Hover (PC) and Active Tap (Phone) ── */
 .pillar-card:hover,
 .pillar-card:active {
-  transform: translateY(-6px);
-  /* Premium blend of light brown and golden accent mixture */
-  background: linear-gradient(135deg, #dcd1be, #c8b89a);
-  box-shadow: 0 16px 32px rgba(200, 184, 154, 0.25);
+  border-color: transparent;
+  /* Signature golden-brown fluid transition mixture matching ethics/newsletter */
+  background: linear-gradient(135deg, #e4dac9 0%, #c8b89a 100%);
+  box-shadow: 0 24px 48px rgba(200, 184, 154, 0.35);
+  transform: translateY(-8px) scale(1.02);
 }
 
-/* Invert inner typography beautifully for flawless visual legibility against the golden mix background */
+/* Micro-movement tracking for item indexes within active cards */
 .pillar-card:hover .pillar-num,
 .pillar-card:active .pillar-num {
   color: #ffffff;
+  transform: scale(1.1) translateY(-2px);
 }
 
 .pillar-card:hover h3,
 .pillar-card:active h3 {
-  color: #0b0b0c; /* Deep rich dark text for premium contrast */
+  color: #0c0b09; /* Deep sharp charcoal focus mapping */
 }
 
 .pillar-card:hover p,
 .pillar-card:active p {
-  color: #3a3a3c;
+  color: #383734;
 }
 
-/* ── Responsive Viewports ── */
-@media (max-width: 1024px) {
+/* ── Responsive Screen Settings (Tablet Viewports) ── */
+@media (max-width: 1100px) {
   .about-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 56px;
+    margin-bottom: 80px;
   }
+  
+  .about-text-wrapper {
+    padding-right: 0;
+  }
+  
+  .about-text-wrapper .section-title {
+    font-size: 46px;
+  }
+
   .pillars-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 }
 
+/* ── Responsive Screen Settings (Mobile Viewports) ── */
 @media (max-width: 768px) {
+  .about-section {
+    padding: 80px 0;
+  }
+
+  .about-section .section-container {
+    padding: 0 20px;
+  }
+
+  .about-text-wrapper .section-title {
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  .paragraph-lead {
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  .about-text-wrapper .paragraph-body {
+    font-size: 14.5px;
+    line-height: 1.75;
+  }
+
   .pillars-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .pillar-card {
+    padding: 32px 24px;
+    border-radius: 20px;
+  }
+
+  /* Safe interactive scaling for active mobile frames */
+  .pillar-card:active {
+    transform: translateY(-5px) scale(1.01);
+  }
+  
+  .pillar-num {
+    margin-bottom: 16px;
   }
 }
