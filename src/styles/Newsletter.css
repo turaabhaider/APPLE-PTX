@@ -1,166 +1,135 @@
+/* ── Section Canvas ── */
 .newsletter-section {
-  padding: 100px 24px;
-  background-color: var(--color-bg-light);
+  padding: 180px 24px;
+  background-color: #faf9f6; /* Immaculate warm linen backdrop */
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
+/* ── Editorial Card Architecture ── */
 .newsletter-card {
-  background-color: var(--color-bg-white);
-  max-width: 700px;
+  background-color: #ffffff;
+  max-width: 720px;
   width: 100%;
-  padding: 60px;
-  border-radius: 28px;
+  padding: 80px 60px;
+  border-radius: 40px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-  /* Added transitions so the entire card background shifts smoothly */
-  transition: 
-    background 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)), 
-    box-shadow 0.4s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1));
+  border: 1px solid rgba(200, 184, 154, 0.15);
+  box-shadow: 0 40px 80px rgba(12, 11, 9, 0.05);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .newsletter-title {
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  margin-bottom: 8px;
-  color: var(--color-text-primary, #0c0b09);
-  transition: color 0.3s ease;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  margin-bottom: 12px;
+  color: #0c0b09;
+  transition: color 0.4s ease;
 }
 
 .newsletter-subtitle {
-  font-size: 14px;
-  color: var(--color-text-secondary, #666);
-  margin-bottom: 32px;
-  transition: color 0.3s ease;
+  font-size: 15px;
+  color: #706e6a;
+  margin-bottom: 48px;
+  letter-spacing: 0.02em;
+  transition: color 0.4s ease;
 }
 
+/* ── Interactive Form Styling ── */
 .newsletter-form {
   display: flex;
-  gap: 12px;
+  gap: 16px;
+  max-width: 580px;
+  margin: 0 auto;
 }
 
 .newsletter-input {
   flex: 1;
-  padding: 16px 24px;
-  border-radius: 12px;
-  border: 1px solid var(--border-light, #e5e5e5);
-  background-color: var(--color-bg-light, #f9f9f9);
-  color: var(--color-text-primary, #0c0b09);
+  padding: 20px 28px;
+  border-radius: 99px;
+  border: 1px solid #e7e3dd;
+  background-color: #fcfbf9;
+  color: #0c0b09;
   font-size: 14px;
   outline: none;
-  -webkit-tap-highlight-color: transparent;
-  transition: 
-    border-color 0.3s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)),
-    background-color 0.3s var(--cb-apple, cubic-bezier(0.16, 1, 0.3, 1)),
-    box-shadow 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ── STATE DETECTOR: When the input bar inside the card is clicked/focused ── */
-.newsletter-card:has(.newsletter-input:focus) {
-  /* The full card shifts into the luxury gold-and-brown gradient mixture */
-  background: linear-gradient(135deg, #dcd1be, #c8b89a);
-  box-shadow: 0 20px 48px rgba(200, 184, 154, 0.3);
-}
-
-/* Invert heading and subtitle text colors when the full box lights up */
-.newsletter-card:has(.newsletter-input:focus) .newsletter-title {
-  color: #0b0b0c;
-}
-
-.newsletter-card:has(.newsletter-input:focus) .newsletter-subtitle {
-  color: #3a3a3c;
-}
-
-/* Style adjustment for the input bar itself when the full box changes color */
 .newsletter-input:focus {
-  background-color: #ffffff; /* Crisp white center background for easy reading */
-  border-color: transparent;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  background-color: #ffffff;
+  border-color: #c8b89a;
+  box-shadow: 0 10px 20px rgba(200, 184, 154, 0.15);
+}
+
+/* ── Extreme Luxury State Detector ── */
+.newsletter-card:has(.newsletter-input:focus) {
+  background: linear-gradient(135deg, #e4dac9 0%, #c8b89a 100%);
+  box-shadow: 0 30px 60px rgba(200, 184, 154, 0.4);
+  transform: translateY(-8px);
+}
+
+.newsletter-card:has(.newsletter-input:focus) .newsletter-title,
+.newsletter-card:has(.newsletter-input:focus) .newsletter-subtitle {
+  color: #0c0b09;
 }
 
 .newsletter-submit-btn {
-  padding: 16px 32px;
-  background-color: var(--color-text-primary, #0c0b09);
-  color: var(--color-bg-white, #ffffff);
+  padding: 20px 40px;
+  background-color: #0c0b09;
+  color: #ffffff;
   border: none;
-  border-radius: 12px;
+  border-radius: 99px;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   cursor: pointer;
-  transition: opacity 0.2s, background-color 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .newsletter-submit-btn:hover {
-  opacity: 0.9;
+  background-color: #2c2a27;
+  transform: scale(1.05);
 }
 
-/* ── Hidden by default on PC Desktop viewports ── */
-.mobile-notice-box {
-  display: none;
-}
-
-/* ── Mobile and Tablet UI Optimization ── */
+/* ── Mobile & Tablet UX ── */
 @media (max-width: 768px) {
   .newsletter-section {
-    padding: 60px 16px;
+    padding: 80px 20px;
   }
 
   .newsletter-card {
-    padding: 40px 20px;
-    border-radius: 20px;
-  }
-
-  .newsletter-title {
-    font-size: 20px;
+    padding: 48px 24px;
+    border-radius: 32px;
   }
 
   .newsletter-form {
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
   }
 
   .newsletter-input {
     width: 100%;
-    box-sizing: border-box;
-    padding: 14px 20px;
+    padding: 18px 24px;
   }
 
   .newsletter-submit-btn {
     width: 100%;
-    padding: 14px 20px;
-    font-size: 14px;
+    padding: 18px 24px;
   }
 
-  /* Beautifully stylized notice container ONLY on Phone viewports */
   .mobile-notice-box {
-    display: block;
-    margin-top: 20px;
-    padding: 14px 16px;
-    background-color: rgba(200, 184, 154, 0.08); 
-    border: 1px dashed var(--color-accent-earth, #c8b89a);
-    border-radius: 12px;
-    animation: fadeInNotice 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    margin-top: 24px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #c8b89a;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
   }
 
   .mobile-notice-box p {
     font-size: 13px;
-    color: var(--color-accent-earth, #c8b89a);
-    font-weight: 500;
-    line-height: 1.5;
-    margin: 0;
-  }
-}
-
-/* Gentle reveal animation loop */
-@keyframes fadeInNotice {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+    color: #54524f;
   }
 }
