@@ -15,31 +15,25 @@ const tiles = [
   { id: 'activewear', img: activeWearImg, label: 'ACTIVE WEAR', alt: 'Active Wear' },
   { id: 'denim',      img: denimImg,      label: 'DENIM',       alt: 'Denim' },
 ];
-
 export default function Fabrics() {
-  const [tapped, setTapped] = useState(null);
-
-  function handleTap(id) {
-    // Toggle off if same tile tapped again
-    setTapped(prev => prev === id ? null : id);
-  }
+  const [activeId, setActiveId] = useState(null);
 
   return (
     <section id="fabrics" className="fabrics-section">
       <div className="section-container">
-
         <div className="fabrics-header">
           <span className="section-tag">MATERIALS & PORTFOLIO</span>
-          <h2 className="section-title">THE FABRICS PACKAGING</h2>
+          <h2 className="section-title">THE FABRIC SELECTION</h2>
         </div>
 
         <div className="fabrics-showcase-grid">
-
           {tiles.map(({ id, img, label, alt }) => (
             <div
               key={id}
-              className={`fabric-tile ${tapped === id ? 'tapped' : ''}`}
-              onClick={() => handleTap(id)}
+              className={`fabric-tile ${activeId === id ? 'is-active' : ''}`}
+              onMouseEnter={() => setActiveId(id)}
+              onMouseLeave={() => setActiveId(null)}
+              onClick={() => setActiveId(activeId === id ? null : id)}
             >
               <img src={img} alt={alt} />
               <div className="fabric-tile-overlay">
@@ -47,19 +41,17 @@ export default function Fabrics() {
               </div>
             </div>
           ))}
-
-          {/* Brand tile — no tap zoom needed */}
+          
           <div className="fabric-tile fabric-brand-tile">
             <img src={accessoriesImg} alt="PTX Accessories" />
             <div className="fabric-brand-overlay">
               <div className="fabric-brand-content">
                 <span className="brand-label">ACCESSORIES</span>
                 <h2>PTX</h2>
-                <p>Curated premium hardware, trim solutions, and custom branded branding details.</p>
+                <p>Curated premium hardware, trim solutions, and custom branding.</p>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
