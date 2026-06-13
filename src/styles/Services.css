@@ -1,39 +1,63 @@
+/* ── Ultra-Premium Services Section ── */
 .services-section {
-  background-color: var(--color-bg-light);
+  padding: 140px 0;
+  background-color: #faf9f6; /* Immaculate warm linen background */
 }
 
 .services-header {
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 80px;
+  padding: 0 20px;
 }
 
+.section-tag {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: #b3a082; /* Balanced rich gold token */
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0c0b09;
+}
+
+/* ── Haute Couture Grid ── */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
 }
 
 .service-card {
-  background-color: var(--color-bg-white);
-  border-radius: 24px;
+  background-color: #ffffff;
+  border-radius: 32px; /* Smoother, deeper curves */
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-  /* Added background to smooth out the theme transition */
-  transition: transform 0.4s var(--cb-apple), box-shadow 0.4s var(--cb-apple), background 0.4s var(--cb-apple);
+  border: 1px solid rgba(200, 184, 154, 0.2);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent; /* Removes default flash box selection on mobile taps */
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Handles luxury card pop transition on hover (PC) and active touch (mobile) */
+/* Luxury hover/active state with signature gradient */
 .service-card:hover,
 .service-card:active {
-  transform: translateY(-6px);
-  background: linear-gradient(135deg, #dcd1be, #c8b89a);
-  box-shadow: 0 16px 32px rgba(200, 184, 154, 0.25);
+  transform: translateY(-12px);
+  background: linear-gradient(135deg, #e4dac9 0%, #c8b89a 100%);
+  box-shadow: 0 30px 60px rgba(200, 184, 154, 0.3);
+  border-color: transparent;
 }
 
 .service-img-holder {
-  height: 300px;
+  height: 320px;
   overflow: hidden;
 }
 
@@ -41,48 +65,65 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s var(--cb-apple);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Triggers image zooming smoothly on both platforms */
 .service-card:hover .service-img-holder img,
 .service-card:active .service-img-holder img {
-  transform: scale(1.05);
+  transform: scale(1.08); /* Sophisticated slow-zoom motion */
 }
 
 .service-info {
-  padding: 32px;
+  padding: 40px;
 }
 
 .service-info h3 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.05em;
-  margin-bottom: 12px;
-  color: var(--color-text-primary, #0c0b09);
-  transition: color 0.3s ease;
+  margin-bottom: 16px;
+  color: #0c0b09;
+  transition: color 0.4s ease;
 }
 
 .service-info p {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--color-text-secondary);
-  transition: color 0.3s ease;
+  font-size: 15px;
+  line-height: 1.75;
+  color: #54524f;
+  transition: color 0.4s ease;
 }
 
-/* Dynamically invert the typography color layout for premium readability over the gold mix background */
+/* Optimized typography for the gold background state */
 .service-card:hover .service-info h3,
-.service-card:active .service-info h3 {
-  color: #0b0b0c; /* Deep rich dark focus point */
-}
-
+.service-card:active .service-info h3,
 .service-card:hover .service-info p,
 .service-card:active .service-info p {
-  color: #3a3a3c;
+  color: #1a1917;
+}
+
+/* ── Responsive Refinements ── */
+@media (max-width: 1024px) {
+  .services-grid {
+    gap: 24px;
+    padding: 0 24px;
+  }
 }
 
 @media (max-width: 768px) {
+  .services-section {
+    padding: 80px 0;
+  }
+
   .services-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Stacked for mobile accessibility */
+    padding: 0 20px;
+  }
+  
+  .service-card {
+    border-radius: 24px;
+  }
+
+  .service-info {
+    padding: 32px 24px;
   }
 }
