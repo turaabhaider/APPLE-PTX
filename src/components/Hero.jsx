@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/Hero.css';
+import heroImg from '../assets/hero.webp';
 
 export default function Hero() {
   const startAutoScroll = (e) => {
@@ -31,20 +32,15 @@ export default function Hero() {
 
   return (
     <header id="home" className="hero-section">
-
       {/* ── Left panel ── */}
       <div className="hero-left-panel">
-
-        {/* Status pill */}
         <div className="hero-pill">
           <span className="hero-dot" />
           <span className="hero-pill-text">Premium Manufacturing Studio</span>
         </div>
 
-        {/* Headline + subtitle + CTAs */}
         <div className="hero-content">
           <h1 className="hero-title animate-fade-in">
-            {/* Each word wrapped for staggered animation */}
             <span className="word">Professional</span>{' '}
             <span className="word">Apparel</span>
             <span className="title-line-italic">
@@ -66,7 +62,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Stats bar */}
         <div className="hero-stats-bar">
           <div className="hero-stat">
             <span className="stat-number">25+</span>
@@ -85,42 +80,28 @@ export default function Hero() {
             <span className="stat-label">Compliance Rate</span>
           </div>
         </div>
-
       </div>
 
-      {/* ── Right panel — dark image block ── */}
+      {/* ── Right panel ── */}
       <div className="hero-right-panel">
-
-        {/* Animated thread lines overlay */}
         <div className="hero-thread-lines" aria-hidden="true" />
-
-        {/* Scanning line */}
         <div className="hero-scan-line" aria-hidden="true" />
 
-        {/* Background image */}
+        {/* Updated Image Implementation */}
         <img
-          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&fit=crop"
-          alt="Industrial fabric manufacturing — spools of thread on production machinery"
+          src={heroImg}
+          alt="Premium industrial fabric production facility"
           className="hero-bg-image"
         />
 
-        {/* Dark overlay */}
         <div className="hero-image-overlay" />
 
-        {/* Live badge — top left */}
-        <div className="hero-badge" aria-hidden="true">
-          <span className="hero-badge-dot" />
-          <span className="hero-badge-text">Active Production</span>
-        </div>
+     
 
-        {/* Corner brackets */}
         <div className="hero-corner-tl" aria-hidden="true" />
         <div className="hero-corner-br" aria-hidden="true" />
-
-        {/* Accent bar top-right */}
         <div className="hero-image-accent-bar" aria-hidden="true" />
 
-        {/* Floating label card — bottom */}
         <div className="hero-image-card">
           <span className="hero-image-card-eyebrow">End-to-End Production</span>
           <p className="hero-image-card-text">
@@ -128,9 +109,7 @@ export default function Hero() {
             and accountability.
           </p>
         </div>
-
       </div>
-
     </header>
   );
 }
