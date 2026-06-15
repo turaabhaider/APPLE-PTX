@@ -1,339 +1,823 @@
-/* ── Section Container & Canvas ───────────────────────── */
+/* ============================================================
+   ETHICS — Sustainability Section
+   PTX · Pakistan Textile Exchange
+   ============================================================
+   Palette   : #f7f6f2 (cream), #0a0a0a (ink), #e8e6df (rule)
+   Type      : 900-weight black headings, 300 italic accents
+   Layout    : Full-width, top split grid → cinematic quote banner
+   Signature : Quote banner as a full-height dark cinema moment
+                with massive centred typography over the photo
+   ============================================================ */
+
+/* ══════════════════════════════════
+   SECTION WRAPPER
+══════════════════════════════════ */
 .ethics-section {
-  padding: 140px 0;
-  background-color: #faf9f6; /* Immaculate warm linen luxury canvas */
+  position: relative;
+  width: 100%;
+  background: #f7f6f2;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Subtle noise texture — matches About palette */
+.ethics-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+}
+
+/* Reset any global section-container constraints */
+.ethics-section .section-container {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ══════════════════════════════════
+   TOP GRID — text left / certs right
+══════════════════════════════════ */
+.ethics-top-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 52% 48%;
+  min-height: 74vh;
+  border-bottom: 0.5px solid #e0ddd5;
+}
+
+/* ── Left panel ── */
+.ethics-left {
+  padding: 100px 72px 100px 80px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  border-right: 0.5px solid #e0ddd5;
+  position: relative;
   overflow: hidden;
 }
 
-.ethics-section .section-container {
-  max-width: 1200px;
-  width: 100%;
-  padding: 0 32px;
-  box-sizing: border-box;
+/* Large 'S' watermark behind left text */
+.ethics-left::before {
+  content: 'S';
+  position: absolute;
+  bottom: -40px;
+  left: -20px;
+  font-size: 340px;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  color: rgba(0, 0, 0, 0.028);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
 }
 
-.ethics-top-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 100px;
-  margin-bottom: 100px;
-  align-items: flex-start;
-}
-
-/* ── Left Column: Editorial Content ──────────────────── */
-.ethics-left {
+.ethics-left-inner {
   position: relative;
-  padding-right: 40px;
+  z-index: 1;
 }
 
-.ethics-left .section-tag {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: #b3a082; /* Premium warm muted gold accent */
-  margin-bottom: 20px;
+/* ── Section tag ── */
+.ethics-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  color: #999999;
   text-transform: uppercase;
-  position: relative;
-  padding-left: 32px;
+  margin-bottom: 24px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Elegant architectural line accent next to section tag */
-.ethics-left .section-tag::before {
+.ethics-tag::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: #bbbbbb;
+  flex-shrink: 0;
+}
+
+.ethics-left.is-visible .ethics-tag {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Main heading ── */
+.ethics-title {
+  font-size: clamp(52px, 7vw, 96px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: #0a0a0a;
+  margin: 0 0 36px;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease 0.12s, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
+}
+
+.ethics-left.is-visible .ethics-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Title italic accent */
+.ethics-title .title-it {
+  display: block;
+  font-style: italic;
+  font-weight: 300;
+  color: #aaaaaa;
+  font-size: 0.72em;
+  letter-spacing: -0.03em;
+}
+
+/* ── Body paragraph ── */
+.ethics-body {
+  font-size: 15px;
+  color: #555555;
+  line-height: 1.85;
+  max-width: 520px;
+  margin: 0 0 48px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease 0.24s, transform 0.6s ease 0.24s;
+}
+
+.ethics-left.is-visible .ethics-body {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Pillars row ── */
+.ethics-pillars {
+  display: flex;
+  gap: 0;
+  border-top: 0.5px solid #e0ddd5;
+  padding-top: 32px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease 0.36s, transform 0.6s ease 0.36s;
+}
+
+.ethics-left.is-visible .ethics-pillars {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ethics-pillar {
+  flex: 1;
+  padding-right: 24px;
+  border-right: 0.5px solid #e0ddd5;
+  margin-right: 24px;
+}
+
+.ethics-pillar:last-child {
+  border-right: none;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.pillar-word {
+  display: block;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: #0a0a0a;
+  margin-bottom: 4px;
+  transition: color 0.2s ease;
+}
+
+.ethics-pillar:hover .pillar-word {
+  color: #555555;
+}
+
+.pillar-sub {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #bbbbbb;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════
+   RIGHT PANEL — Certifications
+══════════════════════════════════ */
+.ethics-right {
+  padding: 100px 80px 100px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Thin horizontal rule top of right panel */
+.ethics-right::before {
   content: '';
   position: absolute;
+  top: 0;
   left: 0;
-  top: 50%;
-  width: 20px;
-  height: 1px;
-  background-color: #b3a082;
-  transform: translateY(-50%);
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.06) 40%, transparent 100%);
 }
 
-.ethics-left .section-title {
-  font-size: 54px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: #0c0b09;
-  line-height: 1.1;
-  margin: 0 0 32px 0;
-}
-
-.ethics-left .paragraph-body {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.85; /* Highly readable, spacious text setting */
-  color: #54524f;
-  margin: 0;
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-/* ── Right Column: Premium Certification Stack ───────── */
+/* ── Certifications heading ── */
 .certifications-title {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: #8c8a85;
-  margin: 0 0 32px 0;
-  line-height: 1.6;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #aaaaaa;
   text-transform: uppercase;
+  line-height: 1.6;
+  max-width: 320px;
+  margin: 0 0 48px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s;
 }
 
+.ethics-right.is-visible .certifications-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Certification list ── */
 .certifications-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 2px;
 }
 
-/* ── Luxury Interactive Certification Cards ──────────── */
+/* ── Single cert card ── */
 .cert-item {
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 24px 28px;
-  border-radius: 24px;
-  border: 1px solid rgba(200, 184, 154, 0.25);
-  background-color: #ffffff;
-  cursor: pointer;
+  padding: 28px 32px;
+  background: #ffffff;
+  border: 0.5px solid rgba(0, 0, 0, 0.07);
+  border-radius: 2px;
   position: relative;
-  -webkit-tap-highlight-color: transparent;
-  /* Complex spring-like transition system for hyper-premium responsiveness */
-  transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  cursor: default;
+  opacity: 0;
+  transform: translateX(24px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
-/* Modern architectural lift with signature gold fluid depth */
-.cert-item:hover,
-.cert-item:active {
-  border-color: transparent;
-  background: linear-gradient(135deg, #e4dac9 0%, #c8b89a 100%);
-  box-shadow: 0 24px 48px rgba(200, 184, 154, 0.35);
-  transform: translateY(-6px) scale(1.015);
+.ethics-right.is-visible .cert-item:nth-child(1) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.2s, 0.2s, 0s, 0s;
 }
 
-/* Fixed geometry logo container */
+.ethics-right.is-visible .cert-item:nth-child(2) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.32s, 0.32s, 0s, 0s;
+}
+
+.ethics-right.is-visible .cert-item:nth-child(3) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.44s, 0.44s, 0s, 0s;
+}
+
+/* Dark fill sweep on hover */
+.cert-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #0a0a0a;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+.cert-item:hover::before {
+  transform: scaleX(1);
+}
+
+.cert-item:hover {
+  border-color: #0a0a0a;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.12);
+}
+
+/* Cert logo wrapper */
 .cert-logo-wrapper {
-  width: 64px;
-  height: 64px;
-  border-radius: 16px;
-  background-color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  position: relative;
+  z-index: 1;
+  width: 52px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  background: #f7f6f2;
+  border: 0.5px solid rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  /* Depth parallax transition on elements inside the card */
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
-/* Card inner-element micro-movement coordination */
-.cert-item:hover .cert-logo-wrapper,
-.cert-item:active .cert-logo-wrapper {
-  transform: scale(1.05) translateX(3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+.cert-item:hover .cert-logo-wrapper {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .cert-logo {
-  width: 46px;
-  height: 46px;
+  width: 36px;
+  height: 36px;
   object-fit: contain;
+  transition: filter 0.3s ease;
 }
 
-/* Sophisticated Deep Emerald-Forest Gradient for OEKO-TEX */
+.cert-item:hover .cert-logo {
+  filter: invert(1) brightness(2);
+}
+
+/* OEKO-TEX custom badge */
 .cert-oeko-badge {
   flex-direction: column;
   gap: 0;
-  background: linear-gradient(135deg, #0e301d 0%, #1c4e33 100%);
-  border: none;
+  padding: 6px;
+  background: #0a0a0a;
+  border-color: transparent;
+}
+
+.cert-item:hover .cert-oeko-badge {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .oeko-text {
   font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-weight: 900;
+  letter-spacing: 0.06em;
   color: #ffffff;
-  line-height: 1.1;
+  line-height: 1;
 }
 
 .oeko-dash {
-  font-size: 8px;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.4);
   line-height: 1;
 }
 
 .oeko-tex {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  color: #ffffff;
-  line-height: 1.1;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1;
 }
 
-/* Typography styles inside cards */
+/* Cert text block */
+.cert-text {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
 .cert-text h5 {
-  font-size: 16px;
-  font-weight: 600;
-  color: #0c0b09;
-  margin: 0 0 4px 0;
-  transition: color 0.4s ease;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #0a0a0a;
+  margin: 0 0 4px;
+  transition: color 0.3s ease;
+}
+
+.cert-item:hover .cert-text h5 {
+  color: #ffffff;
 }
 
 .cert-text p {
-  font-size: 13px;
-  color: #706e6a;
-  line-height: 1.4;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: #aaaaaa;
+  text-transform: uppercase;
   margin: 0;
-  transition: color 0.4s ease;
+  transition: color 0.3s ease;
 }
 
-/* High-contrast luxurious dark charcoal inversion upon card activation */
-.cert-item:hover .cert-text h5,
-.cert-item:active .cert-text h5 {
-  color: #0c0b09;
+.cert-item:hover .cert-text p {
+  color: rgba(255, 255, 255, 0.45);
 }
 
-.cert-item:hover .cert-text p,
-.cert-item:active .cert-text p {
-  color: #383734;
+/* Cert arrow — appears on hover */
+.cert-arrow {
+  position: relative;
+  z-index: 1;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.35);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  flex-shrink: 0;
 }
 
-/* ── Haute Couture Editorial Quote Banner ────────────── */
+.cert-item:hover .cert-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ══════════════════════════════════
+   QUOTE BANNER — cinematic moment
+   Full-height dark photo + giant quote
+══════════════════════════════════ */
 .quote-banner {
   position: relative;
-  border-radius: 40px;
-  padding: 130px 60px;
-  text-align: center;
+  z-index: 1;
+  width: 100%;
+  min-height: 85vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+  background-attachment: fixed; /* parallax */
 }
 
-/* Modern blurred glass-atmospheric lighting overlay */
+/* Photo via inline style (backgroundImage) — kept as-is from JSX */
+
+/* Gradient overlay — heavier at edges for quote legibility */
 .quote-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(12, 11, 9, 0.55);
-  backdrop-filter: blur(2px) brightness(0.85);
+  background:
+    linear-gradient(to bottom, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.38) 50%, rgba(10,10,10,0.80) 100%),
+    radial-gradient(ellipse at center, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.65) 100%);
   z-index: 1;
 }
 
-.quote-banner blockquote {
+/* Scan-line texture */
+.quote-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.04) 3px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
+  pointer-events: none;
+}
+
+/* Content wrapper */
+.quote-content {
   position: relative;
   z-index: 2;
-  font-size: 32px;
-  font-weight: 300;
-  letter-spacing: 0.06em;
-  max-width: 900px;
-  margin: 0 auto;
-  line-height: 1.5;
-  color: #ffffff;
+  text-align: center;
+  padding: 80px 80px;
+  max-width: 1100px;
 }
 
-.quote-banner cite {
+/* Decorative top rule */
+.quote-rule-top {
   display: block;
-  font-style: normal;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  margin-top: 28px;
-  color: #e4dac9; /* Muted ivory gold text coordinate */
-  text-transform: uppercase;
+  width: 1px;
+  height: 0;
+  background: rgba(255, 255, 255, 0.25);
+  margin: 0 auto 40px;
+  transition: height 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ── Responsive Screen Settings (Tablet Viewports) ───── */
+.quote-banner.is-visible .quote-rule-top {
+  height: 60px;
+}
+
+/* Open-quote decoration */
+.quote-mark {
+  display: block;
+  font-size: 120px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.07);
+  line-height: 0.6;
+  margin-bottom: 16px;
+  font-style: normal;
+  user-select: none;
+  opacity: 0;
+  transform: translateY(-16px);
+  transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+}
+
+.quote-banner.is-visible .quote-mark {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* The quote itself */
+.quote-text {
+  font-size: clamp(22px, 3.5vw, 48px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #ffffff;
+  margin: 0 0 28px;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s ease 0.35s, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s;
+}
+
+.quote-banner.is-visible .quote-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Italic highlight on key phrase */
+.quote-text .quote-highlight {
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Cite / attribution */
+.quote-cite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  font-style: normal;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease 0.65s, transform 0.6s ease 0.65s;
+}
+
+.quote-banner.is-visible .quote-cite {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quote-cite::before,
+.quote-cite::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 0.5px;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+/* Decorative bottom rule */
+.quote-rule-bottom {
+  display: block;
+  width: 1px;
+  height: 0;
+  background: rgba(255, 255, 255, 0.25);
+  margin: 40px auto 0;
+  transition: height 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+
+.quote-banner.is-visible .quote-rule-bottom {
+  height: 60px;
+}
+
+/* Corner brackets on quote banner */
+.quote-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.8s;
+}
+
+.quote-banner.is-visible .quote-corner {
+  opacity: 1;
+}
+
+.quote-corner--tl {
+  top: 32px;
+  left: 32px;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.quote-corner--tr {
+  top: 32px;
+  right: 32px;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.quote-corner--bl {
+  bottom: 32px;
+  left: 32px;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.quote-corner--br {
+  bottom: 32px;
+  right: 32px;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+
+/* Large desktop */
+@media (min-width: 1400px) {
+  .ethics-left {
+    padding: 120px 88px 120px 100px;
+  }
+
+  .ethics-right {
+    padding: 120px 100px 120px 88px;
+  }
+
+  .quote-content {
+    padding: 100px 120px;
+    max-width: 1200px;
+  }
+}
+
+/* Tablet landscape */
 @media (max-width: 1100px) {
   .ethics-top-grid {
-    grid-template-columns: 1fr;
-    gap: 64px;
-    margin-bottom: 64px;
+    grid-template-columns: 50% 50%;
   }
-  
+
   .ethics-left {
-    padding-right: 0;
+    padding: 72px 52px 72px 56px;
   }
-  
-  .ethics-left .section-title {
-    font-size: 46px;
+
+  .ethics-right {
+    padding: 72px 56px 72px 52px;
+  }
+
+  .ethics-title {
+    font-size: clamp(44px, 6vw, 72px);
+  }
+
+  .quote-content {
+    padding: 60px 60px;
   }
 }
 
-/* ── Responsive Screen Settings (Mobile Viewports) ───── */
-@media (max-width: 768px) {
-  .ethics-section {
-    padding: 80px 0;
+/* Tablet portrait — stack */
+@media (max-width: 860px) {
+  .ethics-top-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
   }
 
-  .ethics-section .section-container {
-    padding: 0 20px;
+  .ethics-left {
+    padding: 64px 40px;
+    border-right: none;
+    border-bottom: 0.5px solid #e0ddd5;
   }
 
-  .ethics-left .section-title {
-    font-size: 36px;
-    margin-bottom: 24px;
+  .ethics-right {
+    padding: 64px 40px;
   }
 
-  .ethics-left .paragraph-body {
-    font-size: 15px;
-    line-height: 1.75;
-  }
-
-  .certifications-list {
-    gap: 14px;
-  }
-
-  .cert-item {
-    padding: 20px 22px;
-    border-radius: 20px;
-    gap: 18px;
-  }
-
-  /* Calibrate fluid motion values safely for active phone interactions */
-  .cert-item:active {
-    transform: translateY(-4px) scale(1.01);
-  }
-
-  .cert-logo-wrapper {
-    width: 54px;
-    height: 54px;
-    border-radius: 12px;
-  }
-
-  .cert-logo {
-    width: 38px;
-    height: 38px;
-  }
-
-  .cert-text h5 {
-    font-size: 15px;
-  }
-
-  .cert-text p {
-    font-size: 12px;
+  .ethics-left::before {
+    font-size: 240px;
+    bottom: -30px;
+    left: -16px;
   }
 
   .quote-banner {
-    border-radius: 28px;
-    padding: 80px 24px;
+    min-height: 70vh;
+    background-attachment: scroll;
   }
 
-  .quote-banner blockquote {
-    font-size: 20px;
-    letter-spacing: 0.04em;
-    line-height: 1.6;
+  .quote-content {
+    padding: 60px 40px;
   }
 
-  .quote-banner cite {
-    font-size: 11px;
-    margin-top: 20px;
+  .quote-text {
+    font-size: clamp(20px, 4.5vw, 34px);
+  }
+
+  .ethics-pillars {
+    flex-wrap: wrap;
+    gap: 20px 0;
+  }
+
+  .ethics-pillar:nth-child(odd) {
+    border-right: 0.5px solid #e0ddd5;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .ethics-left {
+    padding: 56px 24px;
+  }
+
+  .ethics-right {
+    padding: 56px 24px;
+  }
+
+  .ethics-title {
+    font-size: clamp(48px, 12vw, 64px);
+  }
+
+  .quote-banner {
+    min-height: 65vh;
+    background-attachment: scroll;
+  }
+
+  .quote-content {
+    padding: 48px 24px;
+  }
+
+  .quote-mark {
+    font-size: 80px;
+  }
+
+  .quote-text {
+    font-size: clamp(18px, 5vw, 28px);
+    letter-spacing: -0.02em;
+  }
+
+  .cert-item {
+    padding: 22px 20px;
+  }
+
+  .cert-logo-wrapper {
+    width: 44px;
+    height: 44px;
+  }
+
+  .cert-logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .quote-corner {
+    display: none;
+  }
+
+  .ethics-pillars {
+    display: none;
+  }
+
+  .ethics-left::before {
+    display: none;
+  }
+}
+
+/* ══════════════════════════════════
+   REDUCED MOTION
+══════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .ethics-tag,
+  .ethics-title,
+  .ethics-body,
+  .ethics-pillars,
+  .certifications-title,
+  .cert-item,
+  .quote-mark,
+  .quote-text,
+  .quote-cite,
+  .quote-corner {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .quote-rule-top,
+  .quote-rule-bottom {
+    height: 60px !important;
+    transition: none !important;
+  }
+
+  .quote-banner {
+    background-attachment: scroll;
   }
 }
