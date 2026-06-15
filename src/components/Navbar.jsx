@@ -5,75 +5,66 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Monitor scroll position to toggle the background style dynamically
+  // Monitor scroll position to toggle background style dynamically
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 20);
     };
-
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const handleLinkClick = () => {
-    setMenuOpen(false);
-  };
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const handleLinkClick = () => setMenuOpen(false);
 
   return (
-    /* Dynamically adds 'navbar-scrolled' class when moving away from top */
     <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
       <div className="nav-container">
+
         {/* Brand Logo */}
         <div className="nav-logo">
-          <a href="#home" style={{ color: 'inherit', textDecoration: 'none' }}>PTX</a>
+          <a href="#home">PTX</a>
         </div>
 
-        {/* Desktop Navigation Links */}
+        {/* Desktop Nav Links */}
         <div className="nav-links">
-          <a href="#home">HOME</a>
-          <a href="#about">ABOUT</a>
-          <a href="#services">SERVICES</a>
-          <a href="#ethics">ETHICS</a>
-          <a href="#fabrics">FABRICS</a>
-          {/* Changed target href to #contact to slide down to newsletter */}
-         
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#ethics">Ethics</a>
+          <a href="#fabrics">Fabrics</a>
         </div>
 
-        {/* Desktop CTA Button */}
-        <a href="#contact" className="nav-cta-btn">Get in Touch</a>
+        {/* Desktop CTA */}
+        <a href="#contact" className="nav-cta-btn">
+          Get in Touch
+        </a>
 
-        {/* Hamburger Menu Icon (Mobile Only) */}
-        <button 
-          className={`hamburger-menu ${menuOpen ? 'active' : ''}`} 
+        {/* Hamburger (Mobile Only) */}
+        <button
+          className={`hamburger-menu ${menuOpen ? 'active' : ''}`}
           onClick={toggleMenu}
           aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
         >
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
+          <span className="bar" />
+          <span className="bar" />
+          <span className="bar" />
         </button>
+
       </div>
 
-      {/* Mobile Navigation Dropdown Menu Overlay */}
-      <div className={`navbar-menu-mobile ${menuOpen ? 'open' : ''}`}>
+      {/* Mobile Dropdown */}
+      <div
+        className={`navbar-menu-mobile ${menuOpen ? 'open' : ''}`}
+        aria-hidden={!menuOpen}
+      >
         <div className="mobile-links-container">
-          <a href="#home" onClick={handleLinkClick}>HOME</a>
-          <a href="#about" onClick={handleLinkClick}>ABOUT</a>
-          <a href="#services" onClick={handleLinkClick}>SERVICES</a>
-          <a href="#ethics" onClick={handleLinkClick}>ETHICS</a>
-          <a href="#fabrics" onClick={handleLinkClick}>FABRICS</a>
-          {/* Changed target href to #contact for mobile view too */}
-          
+          <a href="#home"     onClick={handleLinkClick}>Home</a>
+          <a href="#about"    onClick={handleLinkClick}>About</a>
+          <a href="#services" onClick={handleLinkClick}>Services</a>
+          <a href="#ethics"   onClick={handleLinkClick}>Ethics</a>
+          <a href="#fabrics"  onClick={handleLinkClick}>Fabrics</a>
           <a href="#contact" className="mobile-cta-btn" onClick={handleLinkClick}>
             Get in Touch
           </a>
