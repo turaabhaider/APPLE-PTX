@@ -4,16 +4,12 @@ import '../styles/Hero.css';
 export default function Hero() {
   const startAutoScroll = (e) => {
     e.preventDefault();
-
     if (window.isAutoScrolling) return;
     window.isAutoScrolling = true;
-
     const scrollSpeed = 2.2;
-
     const scrollStep = () => {
       const currentScroll = window.scrollY;
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-
       if (currentScroll < maxScroll && window.isAutoScrolling) {
         window.scrollTo(0, currentScroll + scrollSpeed);
         requestAnimationFrame(scrollStep);
@@ -21,44 +17,45 @@ export default function Hero() {
         window.isAutoScrolling = false;
       }
     };
-
     const stopAutoScroll = () => {
       window.isAutoScrolling = false;
       window.removeEventListener('wheel', stopAutoScroll);
       window.removeEventListener('touchmove', stopAutoScroll);
       window.removeEventListener('keydown', stopAutoScroll);
     };
-
     window.addEventListener('wheel', stopAutoScroll, { passive: true });
     window.addEventListener('touchmove', stopAutoScroll, { passive: true });
     window.addEventListener('keydown', stopAutoScroll, { passive: true });
-
     requestAnimationFrame(scrollStep);
   };
 
   return (
     <header id="home" className="hero-section">
 
-      {/* ── Status pill ── */}
-      <div className="hero-pill">
-        <span className="hero-dot" />
-        <span className="hero-pill-text">Premium Manufacturing Studio</span>
-      </div>
+      {/* ── Left panel ── */}
+      <div className="hero-left-panel">
 
-      {/* ── Content row: copy left, visual block right ── */}
-      <div className="hero-content-row">
+        {/* Status pill */}
+        <div className="hero-pill">
+          <span className="hero-dot" />
+          <span className="hero-pill-text">Premium Manufacturing Studio</span>
+        </div>
 
-        {/* Left: headline + sub + CTAs */}
+        {/* Headline + subtitle + CTAs */}
         <div className="hero-content">
           <h1 className="hero-title animate-fade-in">
-            Professional Apparel<br />
-            <span>Solutions.</span>
+            {/* Each word wrapped for staggered animation */}
+            <span className="word">Professional</span>{' '}
+            <span className="word">Apparel</span>
+            <span className="title-line-italic">
+              <span className="word">Solutions.</span>
+            </span>
           </h1>
-          <p className="hero-subtitle animate-fade-in-delayed">
+          <p className="hero-subtitle">
             Delivering high-quality sourcing, manufacturing, and logistics services
             for global brands with a commitment to precision and compliance.
           </p>
-          <div className="hero-actions animate-fade-in-delayed">
+          <div className="hero-actions">
             <a href="#about" className="btn-hero-primary" onClick={startAutoScroll}>
               Explore Full Web
               <span className="btn-arrow">→</span>
@@ -69,39 +66,69 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right: decorative data-card visual */}
-        <div className="hero-visual-block">
-          <div className="hero-visual-chart">
-            <div className="hero-chart-col" />
-            <div className="hero-chart-col tall" />
-            <div className="hero-chart-col mid" />
+        {/* Stats bar */}
+        <div className="hero-stats-bar">
+          <div className="hero-stat">
+            <span className="stat-number">25+</span>
+            <span className="stat-label">Years Experience</span>
           </div>
-          <div className="hero-visual-lines">
-            <div className="hero-visual-line w80" />
-            <div className="hero-visual-line w50" />
+          <div className="hero-stat">
+            <span className="stat-number">200+</span>
+            <span className="stat-label">Global Clients</span>
+          </div>
+          <div className="hero-stat">
+            <span className="stat-number">50+</span>
+            <span className="stat-label">Countries Served</span>
+          </div>
+          <div className="hero-stat">
+            <span className="stat-number">100%</span>
+            <span className="stat-label">Compliance Rate</span>
           </div>
         </div>
 
       </div>
 
-      {/* ── Stats bar ── */}
-      <div className="hero-stats-bar">
-        <div className="hero-stat">
-          <span className="stat-number">25+</span>
-          <span className="stat-label">Years Experience</span>
+      {/* ── Right panel — dark image block ── */}
+      <div className="hero-right-panel">
+
+        {/* Animated thread lines overlay */}
+        <div className="hero-thread-lines" aria-hidden="true" />
+
+        {/* Scanning line */}
+        <div className="hero-scan-line" aria-hidden="true" />
+
+        {/* Background image */}
+        <img
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&fit=crop"
+          alt="Industrial fabric manufacturing — spools of thread on production machinery"
+          className="hero-bg-image"
+        />
+
+        {/* Dark overlay */}
+        <div className="hero-image-overlay" />
+
+        {/* Live badge — top left */}
+        <div className="hero-badge" aria-hidden="true">
+          <span className="hero-badge-dot" />
+          <span className="hero-badge-text">Active Production</span>
         </div>
-        <div className="hero-stat">
-          <span className="stat-number">200+</span>
-          <span className="stat-label">Global Clients</span>
+
+        {/* Corner brackets */}
+        <div className="hero-corner-tl" aria-hidden="true" />
+        <div className="hero-corner-br" aria-hidden="true" />
+
+        {/* Accent bar top-right */}
+        <div className="hero-image-accent-bar" aria-hidden="true" />
+
+        {/* Floating label card — bottom */}
+        <div className="hero-image-card">
+          <span className="hero-image-card-eyebrow">End-to-End Production</span>
+          <p className="hero-image-card-text">
+            From concept to delivery — every step managed with care, consistency,
+            and accountability.
+          </p>
         </div>
-        <div className="hero-stat">
-          <span className="stat-number">50+</span>
-          <span className="stat-label">Countries Served</span>
-        </div>
-        <div className="hero-stat">
-          <span className="stat-number">100%</span>
-          <span className="stat-label">Compliance Rate</span>
-        </div>
+
       </div>
 
     </header>
