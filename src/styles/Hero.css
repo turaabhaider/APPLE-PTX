@@ -592,21 +592,22 @@
   .hero-left-panel {
     flex: none;
     max-width: 100%;
-    padding: 120px 40px 52px;
-    order: 1;
+    /* Bumped top padding slightly to clear the navbar nicely */
+    padding: 140px 40px 60px; 
+    order: 0; /* SWAPPED: Text content now appears FIRST */
   }
 
   .hero-right-panel {
     flex: none;
     max-width: 100%;
-    height: 360px;
-    order: 0;
+    height: 400px; /* Made slightly taller for better proportions */
+    order: 1; /* SWAPPED: Image now appears SECOND (below the text) */
   }
 }
 
 @media (max-width: 640px) {
   .hero-left-panel {
-    padding: 110px 24px 44px;
+    padding: 120px 24px 40px;
   }
 
   .hero-title {
@@ -652,7 +653,11 @@
   }
 
   .hero-right-panel {
-    height: 260px;
+    height: 320px;
+    /* Added margins so the image doesn't touch the exact edges on mobile */
+    margin: 0 16px 40px; 
+    border-radius: 12px; /* Gives it a premium card look */
+    overflow: hidden;
   }
 
   .hero-image-card {

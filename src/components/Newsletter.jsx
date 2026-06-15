@@ -30,33 +30,45 @@ export default function Newsletter() {
 
   return (
     <section id="contact" className="newsletter-section">
-      <div className="newsletter-card">
-        <h2 className="newsletter-title">NEWSLETTER</h2>
-        <p className="newsletter-subtitle">To receive our updates via email</p>
-        
-        <form className="newsletter-form" onSubmit={handleSubmit}>
-          <input 
-            type="email" 
-            placeholder="Enter your email address here..." 
-            className="newsletter-input"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-              if (showMobileNotice) setShowMobileNotice(false); // Hide message if they start re-typing
-            }}
-            required
-          />
-          <button type="submit" className="newsletter-submit-btn">
-            SUBMIT
-          </button>
-        </form>
+      {/* Decorative architectural layout line */}
+      <div className="newsletter-line-accent" aria-hidden="true"></div>
 
-        {/* Clean dynamic notification structure */}
-        {showMobileNotice && (
-          <div className="mobile-notice-box">
-            <p>Please check our direct email address in the footer below to connect with us!</p>
+      <div className="newsletter-container">
+        <div className="newsletter-card">
+          <div className="newsletter-header-wrap">
+            <span className="newsletter-tag">STAY CONNECTED</span>
+            <h2 className="newsletter-title">NEWSLETTER</h2>
+            <p className="newsletter-subtitle">Receive our editorial updates directly via email</p>
           </div>
-        )}
+          
+          <form className="newsletter-form" onSubmit={handleSubmit}>
+            <div className="input-group">
+              <input 
+                type="email" 
+                placeholder="Enter your email address..." 
+                className="newsletter-input"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (showMobileNotice) setShowMobileNotice(false); // Hide message if they start re-typing
+                }}
+                required
+              />
+              <span className="input-focus-line"></span>
+            </div>
+            <button type="submit" className="newsletter-submit-btn">
+              <span>SUBSCRIBE</span>
+              <span className="btn-arrow">→</span>
+            </button>
+          </form>
+
+          {/* Clean modern minimalist notification box */}
+          {showMobileNotice && (
+            <div className="mobile-notice-box">
+              <p>Please check our direct email address in the footer below to connect with us!</p>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
