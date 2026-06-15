@@ -105,7 +105,7 @@ function ServicePanel({ service, index, panelRef }) {
           {/* CTA hint */}
           <span className="service-panel-cta" aria-hidden="true">
             <span className="service-panel-cta-line" />
-            Explore Service
+             Service
             <span className="service-panel-cta-arrow">→</span>
           </span>
         </div>
