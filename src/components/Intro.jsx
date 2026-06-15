@@ -15,14 +15,18 @@ export default function Intro({ onComplete }) {
     <div className={`intro-screen intro-${phase}`}>
       <div className="intro-inner">
         <p className="intro-origin">Est. Karachi, Pakistan</p>
+        
         <h1 className="intro-title">
-          <span className="intro-word intro-word-1">Pakistan</span>
-          <span className="intro-word intro-word-2">Textile</span>
-          <span className="intro-word intro-word-3">Exchange</span>
+          <span className="intro-word">Pakistan</span>
+          <span className="intro-word italic">Textile</span>
+          <span className="intro-word">Exchange</span>
         </h1>
+        
         <div className="intro-line" />
-        <p className="intro-sub">Precision &nbsp;·&nbsp; Ethics &nbsp;·&nbsp; Global Reach</p>
+        
+        <p className="intro-sub">Precision · Ethics · Global Reach</p>
       </div>
+      
       <span className="intro-monogram">PTX</span>
       <div className="intro-corner-line" />
     </div>
