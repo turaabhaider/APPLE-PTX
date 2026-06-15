@@ -1,129 +1,951 @@
-/* ── Ultra-Premium Services Section ── */
+/* ============================================================
+   SERVICES — Process Narrative Layout
+   PTX · Pakistan Textile Exchange
+   ============================================================
+   Structure: stacked service panels (zigzag image/text)
+   Signature: vertical process-rail with animated travel dot
+   Each panel: full-width alternating split, clip-path reveal
+   ============================================================ */
+
+/* ══════════════════════════════════
+   SECTION WRAPPER
+══════════════════════════════════ */
 .services-section {
-  padding: 140px 0;
-  background-color: #faf9f6; /* Immaculate warm linen background */
+  position: relative;
+  width: 100%;
+  background: #0a0a0a;
+  overflow: hidden;
+  padding: 0;
 }
 
+/* Grain overlay — unifies the dark section */
+.services-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.05'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* ── Inner container ── */
+.services-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+}
+
+/* ══════════════════════════════════
+   SECTION HEADER
+══════════════════════════════════ */
 .services-header {
-  text-align: center;
-  margin-bottom: 80px;
-  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+  padding: 100px 80px 80px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
 }
 
-.section-tag {
-  display: block;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.25em;
-  color: #b3a082; /* Balanced rich gold token */
-  margin-bottom: 24px;
+/* Animated top border line */
+.services-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: #ffffff;
+  animation: headerLine 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+@keyframes headerLine {
+  to { width: 100%; }
+}
+
+/* Header left — tag + title */
+.services-header-left {
+  max-width: 660px;
+}
+
+/* ── Section tag ── */
+.services-section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  color: rgba(255, 255, 255, 0.35);
   text-transform: uppercase;
+  margin-bottom: 22px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.section-title {
-  font-size: clamp(32px, 5vw, 48px);
+.services-section-tag::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
+}
+
+.services-section.is-header-visible .services-section-tag {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Section title ── */
+.services-section-title {
+  font-size: clamp(38px, 5vw, 72px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease 0.15s, transform 0.65s ease 0.15s;
+}
+
+.services-section.is-header-visible .services-section-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Title accent — italic lighter word */
+.services-section-title .title-light {
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* Header right — count label */
+.services-header-right {
+  flex-shrink: 0;
+  text-align: right;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+}
+
+.services-section.is-header-visible .services-header-right {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.services-count-num {
+  display: block;
+  font-size: 52px;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  color: rgba(255, 255, 255, 0.08);
+  line-height: 1;
+}
+
+.services-count-label {
+  display: block;
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #0c0b09;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.25);
+  text-transform: uppercase;
+  margin-top: 4px;
 }
 
-/* ── Haute Couture Grid ── */
-.services-grid {
+/* ══════════════════════════════════
+   PROCESS RAIL — vertical left edge
+   Signature element: encodes the
+   sequential nature of the services
+══════════════════════════════════ */
+.services-rail {
+  position: absolute;
+  left: 40px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* The travelling progress fill */
+.services-rail-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.55);
+  height: 0%;
+  transition: height 0.15s linear;
+}
+
+/* The dot that travels along the rail */
+.services-rail-dot {
+  position: absolute;
+  left: 50%;
+  top: 0%;
+  transform: translate(-50%, -50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: top 0.15s linear;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
+}
+
+/* Rail step markers */
+.services-rail-marker {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background 0.3s ease;
+}
+
+.services-rail-marker.is-passed {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* ══════════════════════════════════
+   SERVICE PANELS — zigzag layout
+══════════════════════════════════ */
+.services-panels {
+  position: relative;
+  padding-left: 80px; /* rail clearance */
+}
+
+/* ── Single panel ── */
+.service-panel {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-.service-card {
-  background-color: #ffffff;
-  border-radius: 32px; /* Smoother, deeper curves */
-  overflow: hidden;
-  border: 1px solid rgba(200, 184, 154, 0.2);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Luxury hover/active state with signature gradient */
-.service-card:hover,
-.service-card:active {
-  transform: translateY(-12px);
-  background: linear-gradient(135deg, #e4dac9 0%, #c8b89a 100%);
-  box-shadow: 0 30px 60px rgba(200, 184, 154, 0.3);
-  border-color: transparent;
-}
-
-.service-img-holder {
-  height: 320px;
+  grid-template-columns: 1fr 1fr;
+  min-height: 540px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
   overflow: hidden;
 }
 
-.service-img-holder img {
+/* Alternate: odd panels → image left; even → image right */
+.service-panel:nth-child(even) {
+  direction: rtl; /* flip grid order */
+}
+
+.service-panel:nth-child(even) > * {
+  direction: ltr; /* reset content inside */
+}
+
+/* ── Panel image column ── */
+.service-panel-image {
+  position: relative;
+  overflow: hidden;
+  background: #111111;
+}
+
+/* Clip-path reveal on scroll-in */
+.service-panel-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #0a0a0a;
+  transform-origin: left;
+  transform: scaleX(1);
+  transition: transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 2;
+}
+
+.service-panel.is-visible .service-panel-image::after {
+  transform: scaleX(0);
+}
+
+/* Actual image */
+.service-panel-image img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  object-position: center;
+  filter: grayscale(25%) brightness(0.55) contrast(1.1);
+  transform: scale(1.08);
+  transition: transform 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.1s, filter 0.6s ease;
 }
 
-.service-card:hover .service-img-holder img,
-.service-card:active .service-img-holder img {
-  transform: scale(1.08); /* Sophisticated slow-zoom motion */
+.service-panel.is-visible .service-panel-image img {
+  transform: scale(1.0);
 }
 
-.service-info {
-  padding: 40px;
+.service-panel-image:hover img {
+  filter: grayscale(5%) brightness(0.65) contrast(1.05);
+  transform: scale(1.03) !important;
 }
 
-.service-info h3 {
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  margin-bottom: 16px;
-  color: #0c0b09;
+/* Dark gradient on image */
+.service-panel-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 0.45) 0%,
+    rgba(10, 10, 10, 0.05) 60%,
+    rgba(10, 10, 10, 0.55) 100%
+  );
+  z-index: 1;
+  transition: opacity 0.4s ease;
+}
+
+.service-panel-image:hover .service-panel-image-overlay {
+  opacity: 0.7;
+}
+
+/* Service number as huge image watermark */
+.service-panel-image-num {
+  position: absolute;
+  bottom: -10px;
+  right: -4px;
+  font-size: 160px;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  color: rgba(255, 255, 255, 0.06);
+  line-height: 1;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
   transition: color 0.4s ease;
 }
 
-.service-info p {
-  font-size: 15px;
-  line-height: 1.75;
-  color: #54524f;
-  transition: color 0.4s ease;
+.service-panel-image:hover .service-panel-image-num {
+  color: rgba(255, 255, 255, 0.1);
 }
 
-/* Optimized typography for the gold background state */
-.service-card:hover .service-info h3,
-.service-card:active .service-info h3,
-.service-card:hover .service-info p,
-.service-card:active .service-info p {
-  color: #1a1917;
+/* ── Panel text column ── */
+.service-panel-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 72px 80px 72px 72px;
+  position: relative;
+  background: #0a0a0a;
+  overflow: hidden;
 }
 
-/* ── Responsive Refinements ── */
-@media (max-width: 1024px) {
-  .services-grid {
+/* Even panel: adjust padding for flipped layout */
+.service-panel:nth-child(even) .service-panel-content {
+  padding: 72px 72px 72px 80px;
+}
+
+/* Large step number watermark behind content */
+.service-panel-content::before {
+  content: attr(data-step);
+  position: absolute;
+  top: -20px;
+  right: -16px;
+  font-size: 220px;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  color: rgba(255, 255, 255, 0.028);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* Slide-in for content */
+.service-panel-content-inner {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service-panel.is-visible .service-panel-content-inner {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+/* Step label */
+.service-step-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.25);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.service-step-label .step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 0.5px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.service-panel:hover .service-step-label .step-num {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+}
+
+/* Service title */
+.service-panel-title {
+  font-size: clamp(24px, 2.8vw, 38px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  line-height: 1.05;
+  margin: 0 0 24px;
+  position: relative;
+}
+
+/* Animated underline on hover */
+.service-panel-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.35);
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service-panel:hover .service-panel-title::after {
+  width: 60px;
+}
+
+/* Service description */
+.service-panel-desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.85;
+  max-width: 420px;
+  margin: 0 0 40px;
+  transition: color 0.3s ease;
+}
+
+.service-panel:hover .service-panel-desc {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* CTA row */
+.service-panel-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: default;
+  transition: color 0.3s ease, gap 0.3s ease;
+}
+
+.service-panel:hover .service-panel-cta {
+  color: rgba(255, 255, 255, 0.8);
+  gap: 18px;
+}
+
+.service-panel-cta-line {
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+  flex-shrink: 0;
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service-panel:hover .service-panel-cta-line {
+  width: 48px;
+}
+
+.service-panel-cta-arrow {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service-panel:hover .service-panel-cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ── Thin horizontal rule between panels ── */
+.service-panel + .service-panel {
+  border-top: none; /* controlled by border-bottom above */
+}
+
+/* Corner accent on each panel */
+.service-panel-corner {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.service-panel:hover .service-panel-corner {
+  opacity: 1;
+}
+
+.service-panel-corner--tl {
+  top: 20px;
+  left: 20px;
+  width: 16px;
+  height: 16px;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.service-panel-corner--br {
+  bottom: 20px;
+  right: 20px;
+  width: 16px;
+  height: 16px;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ══════════════════════════════════
+   PANEL DETAIL TAGS
+   Small metadata inside text col
+══════════════════════════════════ */
+.service-panel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.service-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+  padding: 4px 12px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.service-panel:hover .service-tag-pill {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ══════════════════════════════════
+   SECTION FOOTER — bottom strip
+══════════════════════════════════ */
+.services-footer {
+  position: relative;
+  z-index: 2;
+  padding: 60px 80px;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.services-footer.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.services-footer-text {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+  max-width: 420px;
+}
+
+.services-footer-text strong {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 700;
+}
+
+/* Footer CTA button */
+.services-footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: 0.5px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 15px 30px;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.35s ease, border-color 0.35s ease;
+}
+
+.services-footer-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: -1;
+}
+
+.services-footer-btn:hover::before {
+  transform: scaleX(1);
+}
+
+.services-footer-btn:hover {
+  color: #0a0a0a;
+  border-color: #ffffff;
+}
+
+.services-footer-btn-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.services-footer-btn:hover .services-footer-btn-arrow {
+  transform: translateX(4px);
+}
+
+/* ══════════════════════════════════
+   ACTIVE PANEL INDICATOR
+   Small floating step tracker
+══════════════════════════════════ */
+.services-step-tracker {
+  position: fixed;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.services-step-tracker.is-active {
+  opacity: 1;
+}
+
+.tracker-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.tracker-dot.is-current {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.5);
+}
+
+.tracker-dot.is-done {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+/* ══════════════════════════════════
+   HOVER SPOTLIGHT EFFECT
+   Subtle radial on text columns
+══════════════════════════════════ */
+.service-panel-content::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  top: var(--spot-y, 50%);
+  left: var(--spot-x, 50%);
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.service-panel-content:hover::after {
+  opacity: 1;
+}
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+
+/* Large desktop: widen content area */
+@media (min-width: 1400px) {
+  .services-header {
+    padding: 120px 100px 90px;
+  }
+
+  .services-panels {
+    padding-left: 100px;
+  }
+
+  .service-panel-content {
+    padding: 88px 100px 88px 88px;
+  }
+
+  .service-panel:nth-child(even) .service-panel-content {
+    padding: 88px 88px 88px 100px;
+  }
+
+  .services-rail {
+    left: 48px;
+  }
+
+  .services-footer {
+    padding: 72px 100px;
+  }
+}
+
+/* Tablet landscape: tighten padding */
+@media (max-width: 1100px) {
+  .services-header {
+    padding: 72px 56px 60px;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 24px;
-    padding: 0 24px;
+  }
+
+  .services-header-right {
+    text-align: left;
+  }
+
+  .services-panels {
+    padding-left: 56px;
+  }
+
+  .services-rail {
+    left: 28px;
+  }
+
+  .service-panel-content {
+    padding: 56px 52px 56px 52px;
+  }
+
+  .service-panel:nth-child(even) .service-panel-content {
+    padding: 56px 52px 56px 52px;
+  }
+
+  .services-footer {
+    padding: 48px 56px;
   }
 }
 
-@media (max-width: 768px) {
-  .services-section {
-    padding: 80px 0;
+/* Tablet portrait: stack vertically */
+@media (max-width: 860px) {
+  .services-panels {
+    padding-left: 0;
   }
 
-  .services-grid {
-    grid-template-columns: 1fr; /* Stacked for mobile accessibility */
-    padding: 0 20px;
-  }
-  
-  .service-card {
-    border-radius: 24px;
+  .services-rail {
+    display: none;
   }
 
-  .service-info {
-    padding: 32px 24px;
+  .service-panel {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    direction: ltr !important;
   }
+
+  .service-panel > * {
+    direction: ltr !important;
+  }
+
+  .service-panel-image {
+    height: 280px;
+  }
+
+  .service-panel-content {
+    padding: 48px 40px;
+  }
+
+  .service-panel:nth-child(even) .service-panel-content {
+    padding: 48px 40px;
+  }
+
+  .service-panel-content::before {
+    font-size: 140px;
+    right: -8px;
+    top: -10px;
+  }
+
+  .services-step-tracker {
+    display: none;
+  }
+
+  .services-header {
+    padding: 64px 40px 52px;
+  }
+
+  .services-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 48px 40px;
+  }
+
+  .services-footer-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .services-header {
+    padding: 56px 24px 44px;
+  }
+
+  .services-section-title {
+    font-size: clamp(30px, 8vw, 44px);
+  }
+
+  .service-panel-image {
+    height: 220px;
+  }
+
+  .service-panel-content {
+    padding: 40px 24px;
+  }
+
+  .service-panel:nth-child(even) .service-panel-content {
+    padding: 40px 24px;
+  }
+
+  .service-panel-title {
+    font-size: clamp(22px, 6vw, 30px);
+  }
+
+  .service-panel-content::before {
+    font-size: 100px;
+  }
+
+  .services-footer {
+    padding: 40px 24px;
+  }
+
+  .service-panel-tags {
+    display: none;
+  }
+}
+
+/* ══════════════════════════════════
+   SCROLL REVEAL — default hidden
+   (JS adds .is-visible on the panels)
+══════════════════════════════════ */
+.service-panel {
+  /* Panels start un-revealed; JS observer adds .is-visible */
+}
+
+/* ── Panel enter transition ── */
+.service-panel .service-panel-content-inner {
+  will-change: opacity, transform;
+}
+
+/* ══════════════════════════════════
+   FOCUS STYLES — accessibility
+══════════════════════════════════ */
+.services-footer-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 4px;
+}
+
+.service-panel-content:focus-within .service-panel-content-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════
+   REDUCED MOTION
+══════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .services-header::before,
+  .services-section-tag,
+  .services-section-title,
+  .services-header-right,
+  .services-footer {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .service-panel-image::after {
+    transition: none;
+    transform: scaleX(0);
+  }
+
+  .service-panel-image img {
+    transform: scale(1);
+    transition: none;
+  }
+
+  .service-panel-content-inner {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .services-footer {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .service-panel-title::after,
+  .service-panel-cta-line,
+  .service-panel-cta-arrow,
+  .services-rail-fill,
+  .services-rail-dot {
+    transition: none;
+  }
+}
+
+/* ══════════════════════════════════
+   UTILITY — section container reset
+   (overrides any global .section-container)
+══════════════════════════════════ */
+.services-section .section-container {
+  max-width: none;
+  padding: 0;
+  margin: 0;
 }
