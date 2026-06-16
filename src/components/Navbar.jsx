@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import logo from '../assets/Asset 2@4x.png';
 import '../styles/Navbar.css';
 
 export default function Navbar() {
@@ -16,11 +17,14 @@ export default function Navbar() {
   const toggleMenu = () => setMenuOpen((prev) => !prev);
   const handleLinkClick = () => setMenuOpen(false);
 
+
   return (
     <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
       <div className="nav-container">
         <div className="nav-logo">
-          <a href="#home">PTX</a>
+          <a href="#home" aria-label="PakTex Apparel - Home">
+            <img src={logo} alt="PakTex Apparel" className="logo-img" />
+          </a>
         </div>
 
         <div className="nav-links">
