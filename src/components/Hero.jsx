@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/Hero.css';
-import heroImg from '../assets/hero.webp';
+import heroImg from '../assets/accessories.webp';
 
 export default function Hero() {
   const startAutoScroll = (e) => {
