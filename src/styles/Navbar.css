@@ -36,14 +36,40 @@
 }
 
 /* ── Logo ── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+
 .nav-logo a {
-  font-size: 15px;
-  font-weight: 900;
-  letter-spacing: 0.18em;
-  color: #0a0a0a;
-  text-decoration: none;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
   line-height: 1;
+}
+
+.logo-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  transition: height 0.3s ease, transform 0.2s ease, opacity 0.2s ease;
+
+  /* Your source file ("Asset 2@4x.png") is a faint, low-opacity dark
+     watermark-style mark, so on its own it can look washed out.
+     brightness(0) forces every non-transparent pixel to solid black,
+     ignoring the original faint gray/opacity, so it reads crisply on
+     this white navbar. Remove this line if you swap in a logo file
+     that's already solid and high-contrast. */
+  filter: brightness(0);
+}
+
+.logo-img:hover {
+  transform: scale(1.04);
+}
+
+/* Slightly shrink the logo once the navbar has scrolled, to match a
+   tighter, more compact scrolled state */
+.navbar-scrolled .logo-img {
+  height: 26px;
 }
 
 /* ── Desktop nav links ── */
@@ -238,6 +264,14 @@
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  .logo-img {
+    height: 26px;
+  }
+
+  .navbar-scrolled .logo-img {
+    height: 22px;
+  }
+
   /* Blackout Mobile Drawer */
   .navbar-menu-mobile {
     position: fixed;
@@ -288,6 +322,10 @@
 @media (max-width: 480px) {
   .nav-container {
     padding: 0 20px;
+  }
+
+  .logo-img {
+    height: 24px;
   }
 
   .mobile-links-container {
