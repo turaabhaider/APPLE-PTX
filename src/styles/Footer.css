@@ -40,11 +40,20 @@
   margin: 0 0 14px 0;
 }
 
-.contact-list,
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Updated for horizontal icons */
 .social-links-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .contact-list li {
@@ -56,14 +65,16 @@
   margin-bottom: 10px;
 }
 
+/* Reset margin for horizontal layout */
 .social-links-list li {
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
 
 .footer-email-item {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  position: relative; /* Added to keep the badge floating nicely below the icon */
 }
 
 .social-link {
@@ -87,6 +98,23 @@
   transition: color 0.2s ease;
 }
 
+/* --- NEW SVG ICON STYLES --- */
+.social-link svg,
+.social-link-btn svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+/* Add a clean pop effect on hover */
+.social-link:hover svg,
+.social-link-btn:hover svg,
+.social-link-btn.active svg {
+  transform: scale(1.15);
+}
+/* --------------------------- */
+
 .social-link:hover,
 .social-link-btn:hover,
 .social-link-btn.active {
@@ -95,7 +123,10 @@
 
 /* Beautiful dynamic notification chip layout */
 .footer-email-badge {
-  margin-top: 6px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 12px;
   font-size: 12px;
   font-weight: 500;
   color: #f5f5f7;
@@ -103,9 +134,11 @@
   padding: 6px 12px;
   border-radius: 6px;
   border: 1px solid #212124;
-  word-break: break-all;
+  word-break: keep-all;
+  white-space: nowrap;
   user-select: all; /* Allows easy highlight copy actions */
   animation: slideDownEmail 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  z-index: 10;
 }
 
 @keyframes slideDownEmail {
@@ -217,8 +250,9 @@
     flex-shrink: 0;
   }
 
+  /* Reset for horizontal layout on mobile */
   .social-links-list li {
-    margin-bottom: 12px;
+    margin-bottom: 0;
   }
 
   .social-link,
@@ -231,12 +265,15 @@
   .footer-email-badge {
     font-size: 13px;
     padding: 8px 12px;
-    margin-top: 8px;
+    margin-top: 12px;
     background-color: #121214;
     border-color: #2c2c2e;
     color: #ffffff;
     max-width: 100%;
     box-sizing: border-box;
+    /* Adjusting position slightly so it doesn't clip off the right edge */
+    left: auto;
+    right: 0;
   }
 
   .footer-copyright-row {
